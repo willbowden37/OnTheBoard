@@ -18,3 +18,9 @@ If need be, we can use the Goodreads API for additional data. Unfortunately, the
 
 ## Data Processing
 There are a few csv file that we need to go through in order to make sure we have good data.  From initial inspection, books.csv will not require much cleanup, ratings.csv will be about the same, although it is quite large.  The one that will take some doing is the tags.csv.  This file has every tag  imaginable, including non-english tags.  For the purposes of the visualization, we will have to pick only a few of the tags, which will require some checking to makee sure every book is covered by the tags we choose to use.
+
+## Visualization Design
+
+![Brainstorm](/images/Brainstorm.png)
+![Design 1](/images/Design1.png)
+

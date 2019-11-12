@@ -23,5 +23,5 @@ There are a few csv file that we need to go through in order to make sure we hav
 
 ![Brainstorm](images/Brainstorm.JPG)
 ![Design 1](images/Design1.JPG)
-![Design 2](images/Design2.JPG)
+![Design 2](images/Design2.jpg)
 

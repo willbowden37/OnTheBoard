@@ -24,8 +24,8 @@ There are a few csv file that we need to go through in order to make sure we hav
 ![Brainstorm](images/Brainstorm.JPG)
 ![Design 1](images/Design1.JPG)
 ![Design 2](images/Design2.jpg)
-![Design3](/images/Design3.jpg)
-![FinalDesign](/images/FinalDesign.jpg)
+![Design3](images/Design3.jpg)
+![FinalDesign](images/FinalDesign.jpg)
 
 ## Must-Have Features
 We need a way to display the links between books. On one main panel, we will have links between books, based on reviewers, of any single number of stars given, ie. the user can choose to display connections based on one star, or two star, etc. Another important feature is the ability to choose speccific books to see connections between your choice of books. The user must be able to see their chosen list, and bee able to add and delete easily.

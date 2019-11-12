@@ -21,6 +21,6 @@ There are a few csv file that we need to go through in order to make sure we hav
 
 ## Visualization Design
 
-![Brainstorm](/images/Brainstorm.JPG)
-![Design 1](/images/Design1.JPG)
+![Brainstorm](images/Brainstorm.JPG)
+![Design 1](images/Design1.JPG)
 

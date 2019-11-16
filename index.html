@@ -1,50 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Goodreads++</title>
-    <link rel="stylesheet" href="public/css/style.css"/>
-    <script src="https://d3js.org/d3.v5.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Goodreads++</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="bower_components/popper/popper.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  </head>
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
 
-  <body>
+<body>
 
-    <h1>Goodreads++</h1>
+  <h1>Goodreads++</h1>
 
-    <p class="info">Jason Andersen, JasonAndersen00@aggiemail.usu.edu, A# A02290689 <br>
-    Will Bowden, willbowden37@gmail.com, A# A01884712 <br>
-    Joseph Tucotte </p>
-    
-    <div id="book-selection" class="view">
+  <p class="info">
+    Jason Andersen, JasonAndersen00@aggiemail.usu.edu, A# A02290689 <br />
+    Will Bowden, willbowden37@gmail.com, A# A01884712 <br />
+    Joseph Turcotte, joe.turcotte96@gmail.com, A# A01998206
+  </p>
+
+  <div class="container" id="bootstrap-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="book-selection" class="view">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <div id="bundled-chart" class="iew">
+          Main viz
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div id="search" class="view">
+        </div>
+      </div>
     </div>
 
-    <div id = "bundled-chart" class = "view">
-        Main viz
-    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div id="histogram" class="view">
+        </div>
+      </div>
 
-    <div id = "search" class = "view">
-    </div>
+      <div class="col-md-4">
+        <div id="bar-chart" class="view">
+        </div>
+      </div>
 
-    <div id = "histogram" class = "view">
+      <div class="col-md-4">
+        <div id="scatterplot" class="view">
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div id = "bar-chart" class = "view">
-    </div>
+  <script type="application/javascript" src="js/BookSelection.js"></script>
+  <script type="application/javascript" src="js/BundledChart.js"></script>
+  <script type="application/javascript" src="js/SearchBox.js"></script>
+  <script type="application/javascript" src="js/script.js"></script>
+</body>
 
-    <div id = "scatterplot" class = "view">
-    </div>
-
-    <script type="application/javascript" src="js/BookSelection.js"></script>
-    <script type="application/javascript" src="js/BundledChart.js"></script>
-    <script type="application/javascript" src="js/SearchBox.js"></script>
-    <script type="application/javascript" src="js/script.js"></script>
-  </body>
 </html>
 
 

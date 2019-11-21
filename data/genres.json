@@ -1,0 +1,52 @@
+[
+    {
+      "name": "Biography",
+      "id": "4605",
+      "count": 0
+    },
+    {
+      "name": "Crime",
+      "id": "8517",
+      "count": 0
+    },
+    {
+      "name": "Fantasy",
+      "id": "11305",
+      "count": 0
+    },
+    {
+      "name": "History",
+      "id": "14552",
+      "count": 0
+    },
+    {
+      "name": "Horror",
+      "id": "14821",
+      "count": 0
+    },
+    {
+      "name": "Manga",
+      "id": "19052",
+      "count": 0
+    },
+    {
+      "name": "Mystery",
+      "id": "20939",
+      "count": 0
+    },
+    {
+      "name": "Romance",
+      "id": "26138",
+      "count": 0
+    },
+    {
+      "name": "Science Fiction",
+      "id": "26837",
+      "count": 0
+    },
+    {
+      "name": "Young Adult",
+      "id": "33114",
+      "count": 0
+    }
+  ]

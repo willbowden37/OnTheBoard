@@ -15,6 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
@@ -40,14 +41,30 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-10">
-        <div id="bundled-chart" class="iew">
+      <div class="col-md-9">
+        <div id="bundled-chart" class="view">
           Main viz
         </div>
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div id="search" class="view">
+          <div class="container" id="searchBarContainer">
+            <div class="row" id="searchBarRow">
+              <div class="col-md-10 searchRowItem">
+                <input class="searchInput" type="text" name="search" placeholder="Search"/>
+              </div>
+              <div class="col-md-2 searchRowItem">
+                <div class="searchButton">
+                  <img class="searchImg" src="images/magnifying-glass-3x.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="searchResults">
+            <ul class="searchResultsList">
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -70,13 +87,13 @@
     </div>
   </div>
 
-  <script type="application/javascript" src="js/BookSelection.js"></script>
-  <script type="application/javascript" src="js/BundledChart.js"></script>
-  <script type="application/javascript" src="js/Scatterplot.js"></script>
-  <script type="application/javascript" src="js/SearchBox.js"></script>
-  <script type="application/javascript" src="js/Histogram.js"></script>
-  <script type="application/javascript" src="js/Barchart.js"></script>
-  <script type="application/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/BookSelection.js"></script>
+  <script type="text/javascript" src="js/BundledChart.js"></script>
+  <script type="text/javascript" src="js/Scatterplot.js"></script>
+  <script type="text/javascript" src="js/SearchBox.js"></script>
+  <script type="text/javascript" src="js/Histogram.js"></script>
+  <script type="text/javascript" src="js/Barchart.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>

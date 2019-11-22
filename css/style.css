@@ -29,15 +29,20 @@ h3{
 }
 
 #book-selection {
-
+  height: 200px;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #bundled-chart {
-
+  height: 700px;
+  max-height: 700px;
 }
 
 #search {
-
+  height: 700px;
+  max-height: 700px;
 }
 
 #histogram {
@@ -63,18 +68,73 @@ h3{
     max-width: 100%;
 }
 
+#searchBarContainer {
+  margin-left: 0px;
+  margin-right: 0px;
+  max-width: 100%;
+  padding: 0px;
+  height: 30px;
+}
+
+#searchBarRow {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.searchRowItem {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 * {box-sizing: border-box;}
 
+/* ============ Search Input ============ */
 
+.searchInput {
+  width: 100%;
+  height: 100%;
+}
 
-/* ==================Styling for List ===========*/
-ul {
+.searchButton {
+  width: 100%;
+  height: 100%;
+}
+
+.searchButton:hover {
+  cursor: pointer;
+}
+
+.searchButtonText {
+
+}
+
+.searchImg {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============ Chosen Book List ============ */
+
+.searchResults {
+  width: 100%;
+  height: 50%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-top: solid black 2px;
+  border-bottom: solid black 2px;
+}
+
+.searchResultsList {
+  width: 100%;
+  height: 90%;
+  padding-left: 20px;
+}
+
+/* ============ Styling for List ============ */
+.listSelction {
   position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  overflow: scroll;
   margin: 0;
   padding: 0;
   
@@ -87,7 +147,7 @@ ul {
   -webkit-overflow-scrolling: touch;
 }
 
-li {
+.fullListItem {
   padding: 10px 20px;
   
   border-bottom: 1px solid #ccc;
@@ -99,8 +159,4 @@ li {
   /* &:nth-child(even) {
     background: #f8f8f8;
   } */
-}
-
-.search-box {
-    
 }

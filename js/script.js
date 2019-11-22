@@ -42,8 +42,6 @@ Promise.all([
   console.log('tags:', tags)
   console.log("genres:", genres)
 
-  bookSelection.initializeList(books)
-  search.initialize(bookTags, books, tags, genres)
   //Data preprocessing
   parseTags(bookTags, books, tags, genres);
 
@@ -96,6 +94,8 @@ function parseTags(bookTags, books, tags, genres) {
   console.log("For loop finished", total);
 
 
+  bookSelection.initializeList(taggedBooks)
+  search.initialize(bookTags, taggedBooks, tags, genres)
 
   //Testing BookSelection
   bookSelection.update(books[10])
@@ -110,5 +110,5 @@ function parseTags(bookTags, books, tags, genres) {
   bookSelection.update(books[13])
   bookSelection.update(books[23])
   bookSelection.update(books[33])
-  // bookSelection.update(books[10])
+  bookSelection.update(books[10])
 }

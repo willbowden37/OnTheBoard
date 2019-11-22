@@ -29,7 +29,7 @@ class BookSelection {
 
     update(book) {
         //This receives a book element
-        console.log(book)
+        // console.log(book)
 
  
         if (this.listedBooks.some(e => e.book_id === book.book_id)) {

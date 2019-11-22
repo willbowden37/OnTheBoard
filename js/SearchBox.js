@@ -13,12 +13,36 @@ class SearchBox {
 
         this.svgBounds = divSearch.node().getBoundingClientRect();
         this.svgWidth = this.svgBounds.width - this.margin.left - this.margin.right;
-        this.svgHeight = 200;
+        this.svgHeight = 600;
+
+        divSearch.append('input')
+        
+        ;
+        this.list = divSearch.append('ul')
 
         this.svg = divSearch.append("svg")
             .attr("width", this.svgWidth)
             .attr("height", this.svgHeight)
         ;
+
+        this.svg.append('g')
+            .append('rect')
+            .attr('height',20)
+            .attr('width',20)
+            .attr('x',50)
+            .attr('y',50)
+            .on('click',() => {
+                let text = divSearch.select('input').node().value
+                this.search(text)
+            })
+        ;
+
+
+
+
+
+
+
     }
 
 
@@ -30,25 +54,22 @@ class SearchBox {
         this.genres = genres
 
 
-        // d3.select('#search').selectAll('svg').append('svg');
-
-        // d3.select('#search')
-        //     .attr('width', 25);
-
-        // d3.select("#search")
-        //     .append('svg')
-        //     .attr('width', 50)
-        //     .attr('height', 50)
-        //     .append('g')
-        //     .attr("transform", "translate(10,18)")
-        //     .call(goalAxis)
-        // ;
 
     }
 
 
 
-    update(data) {
+    search(text){
+        const found = this.books.filter(element => element.original_title.toLowerCase().includes(text.toLowerCase()));
+        console.log(found)
+        this.list.selectAll('li').remove()
+
+        this.list.selectAll('li')
+            .data(found.original_title)
+            .enter()
+            .append('li')
+            .text(d=>d)
+        ;
         
     }
 }

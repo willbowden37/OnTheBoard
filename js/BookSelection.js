@@ -9,12 +9,7 @@ class BookSelection {
         this.listedBooks = []
         this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
         this.divSelection = d3.select("#book-selection");
-        this.divSelection.append('ul');
-
-        this.svg = this.divSelection.append("svg")
-            .attr("width", 0)
-            .attr("height", 200)
-        ;
+        this.divSelection.append('ul').attr('class', 'listSelection');
 
     }
 
@@ -56,6 +51,7 @@ class BookSelection {
         .data(this.listedBooks)
         .enter()
         .append('li')
+        .attr('class', 'fullListItem')
         .text(d => d.original_title)
         .on('mouseover', (d,i) => {
             

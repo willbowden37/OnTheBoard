@@ -42,7 +42,7 @@ Promise.all([
   console.log('tags:', tags)
   console.log("genres:", genres)
 
-
+  bookSelection.initializeList(books)
   //Data preprocessing
   parseTags(bookTags, books, tags, genres);
 
@@ -93,4 +93,12 @@ function parseTags(bookTags, books, tags, genres) {
   console.log("Tagged Books", taggedBooks);
   console.log("Genre Count", genres);
   console.log("For loop finished", total);
+
+
+
+  //Testing BookSelection
+  bookSelection.update(books[10])
+  bookSelection.update(books[20])
+  bookSelection.update(books[30])
+  bookSelection.update(books[10])
 }

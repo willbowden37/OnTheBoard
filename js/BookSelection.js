@@ -1,15 +1,27 @@
 class BookSelection {
+    /**
+     * Constructor
+     * 
+     * @param bundledChart
+     */
     constructor(bundledChart) {
         this.bundledChart = bundledChart;
         this.listedBooks = []
-        d3.select('#book-selection').append('ul')
+        this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
+        this.divSelection = d3.select("#book-selection");
+        this.divSelection.append('ul');
+
+        this.svg = this.divSelection.append("svg")
+            .attr("width", 0)
+            .attr("height", 200)
+        ;
 
     }
 
     initializeList(books) {
         //Currently not using this list of books, might not need it at all
-        this.books = books
-        console.log(books)
+        // this.books = books
+        // console.log(books)
 
         //possibly add headers to the list, include more information, option to sort the list?
     }
@@ -34,9 +46,8 @@ class BookSelection {
         }
 
         //possibly sort the list?
-
         
-        let list = d3.select('#book-selection').select('ul')
+        let list = this.divSelection.select('ul')
         
         list.selectAll('li').remove()
 

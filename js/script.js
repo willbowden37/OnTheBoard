@@ -43,6 +43,7 @@ Promise.all([
   console.log("genres:", genres)
 
   bookSelection.initializeList(books)
+  search.initialize(bookTags, books, tags, genres)
   //Data preprocessing
   parseTags(bookTags, books, tags, genres);
 
@@ -100,5 +101,14 @@ function parseTags(bookTags, books, tags, genres) {
   bookSelection.update(books[10])
   bookSelection.update(books[20])
   bookSelection.update(books[30])
-  bookSelection.update(books[10])
+  bookSelection.update(books[11])
+  bookSelection.update(books[21])
+  bookSelection.update(books[31])
+  bookSelection.update(books[12])
+  bookSelection.update(books[22])
+  bookSelection.update(books[32])
+  bookSelection.update(books[13])
+  bookSelection.update(books[23])
+  bookSelection.update(books[33])
+  // bookSelection.update(books[10])
 }

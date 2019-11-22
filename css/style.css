@@ -94,9 +94,13 @@ li {
   
   /* &:last-child {
     border-bottom: none;
-  }
+  } */
   
-  &:nth-child(even) {
+  /* &:nth-child(even) {
     background: #f8f8f8;
   } */
+}
+
+.search-box {
+    
 }

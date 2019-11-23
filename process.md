@@ -10,7 +10,7 @@
 
 ## Overview and Motivation
 Our group loves to read books, but sometimes it is hard to find good books. 
-Various people have made lists of the "bestbooks," but different people have different tastes. 
+Various people have made lists of the "best books," but different people have different tastes. 
 However, if you have similar tastes to someone in multiple categories, it is more likely that you might
 like something else that that person does.  
 
@@ -18,7 +18,7 @@ The intent of this project is to create a visualization system that connects all
 different genres according to who read and reviewed them. We accomplish this by using a Hierarchical Edge
 Bundling visualization as well as a few others that supplement it. The goal of this is to make it easier to
 find books that other people with similar tastes like as well. For example, if you like both Brandon
-Sanderson and J.R.R. Tolkein, you could use this visualization to find other authors liked by people
+Sanderson and J.R.R. Tolkien, you could use this visualization to find other authors liked by people
 who enjoy both of those authors.
 
 ## Related Work
@@ -62,7 +62,7 @@ bundling visualization.
 The intent of the main viz is to show the connections between different books. In the final version of
 this visualization, the user will be able to change the books shown in it from the search box on the right.
 
-The search box on teh right allows the user to search through the possible books. By clicking on a book
+The search box on the right allows the user to search through the possible books. By clicking on a book
 in the results list, it will be added to all of the visualizations as well as the list at the top, which
 represents all the books currently selected.
 
@@ -75,4 +75,17 @@ information like the average scores of genres as well.
 ![PrototypePart2](images/PrototypePart2.png)
 
 ## Evaluation
+The biggest thing we learned from our visualizations was just how interconnected the data really is. A
+user who has reviewed one book has also likely reviewed countless others. Likewise, many books share
+similar tags and have scores in the same ballpark as similar books, likely as a result of the same
+people reviewing them.
 
+This helped to answer our biggest question which was to find connections between different books that are
+enjoyed by the same people. The visualization connects these different points and presents it in a way
+that is discernible by a user.
+
+As our visualization is still in the prototype stage, there are various different issues. The biggest one
+is that the main visualization only works when it is hard coded and currently does not accept dynamic
+input. One of the biggest ways to improve it beyond technical issues would be to add more options and
+interactivity. If we give the users options to see different kinds of data from this same data source,
+such as authors, genres, reviews, and tags, it could further improve the usefulness fo the visualization.

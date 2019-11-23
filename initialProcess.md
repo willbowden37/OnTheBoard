@@ -1,4 +1,4 @@
-# On The Board Final Project
+# On The Board Final Project Proposal
 ## Team Info 
 
 | Name      |       Email         | Github Username  |

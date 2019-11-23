@@ -22,4 +22,26 @@ Sanderson and J.R.R. Tolkein, you could use this visualization to find other aut
 who enjoy both of those authors.
 
 ## Related Work
-We were inspired to use  
+We were inspired to use a Hierarchical Edge Bundling visualization after one was shown in class. We had
+been trying to come up with ways that we could connect different kinds of books that people of different
+tastes like, and when we decided that it would be the ideal way for us to represent our data.
+
+## Questions
+The biggest question we are trying to answer is help people find new kinds of books that people with
+similar tastes also tend to like. Plenty of websites like Amazon make recommendations based on users
+that have read similar books, but there is no substitute to allowing people to make connections themselves.
+
+Another question we are trying to answer are what the connections in review scores of different genres
+look like. A lot of people who enjoy fantasy also enjoy science fiction, but do they enjoy romance as well?
+Questions like these are not easy to answer with a simple recommendation system, but with a visualization
+like ours, further analysis can be done by users looking for more information.
+
+## Data
+We are using a data source on Github that originated from the Goodreads API. It is from a user called zygmuntz
+and is in a repository called <a href="https://github.com/zygmuntz/goodbooks-10k">goodbooks-10k</a>
+
+If we need additional data, we can use the Goodreads API directly. Unfortunately, there are some limitations
+with this API like needing elevated permissions to access certain things and only being able to make one
+API request per second that caused us to find another data source that had the data we needed statically.
+
+## Exploratory Data Analysis

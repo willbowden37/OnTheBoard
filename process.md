@@ -52,11 +52,41 @@ that we needed to filter through.
  
 As we went along we did interact with the data in the form of some simple bar charts that made it easier
 to see things. However, as our visualization is far more about the connections between categorical data
-rather than quantitative analysis, there was no substitute to making a prototype of the hierarchical edge
-bundling visualization.
+rather than quantitative analysis, there was no substitute to making a prototype of the Hierarchical Edge
+Bundling visualization.
 
 ## Design Evolution
+Our original plan was to use a node link diagram. It would have links between the different books for
+each reviewer who had reviewed both of them. The links would have gotten thicker based on the numbers of
+reviewers who had reviewed both. This would have been a fine visualization, but we decided against it once
+we saw the Hierarchical Edge Bundling chart in class
 
+![EarlyEdgeBundling](images/EarlyEdgeBundling.jpg)
+
+After we had decided on using Hierarchical Edge Bundling, we still had a lot of different questions to
+answer. The biggest was what data we wanted to show in our bundled graph. We experimented with genres,
+ratings, authors, and lots of other things. This is also the stage where we came up with the search box
+on the right and the list above of the selected books.
+
+![ProposalFinalDesign](images/ProposalFinalDesign.jpg)
+
+For our proposal, we brought a lot of the different things we had been thinking of together in a more
+concrete design. As you can see here, most of the elements used eventually made it to the prototype stage.
+The biggest thing that was cut was changing the table into a simple list since the focus of this data
+should be on teh visualization, not a table.
+
+![PrototypeLayout](images/PrototypeLayout.jpg)
+
+By the time we reached the prototyping stage, we had narrowed in on the layout we wanted to use. This is
+also the stage where we decided to use supplementary visualizations to support the main viz. These were
+placed underneath the main viz so as not to distract from the main viz. While perspective is important in
+visual art, it would be detrimental to visualizing data to have these smaller visualizations distract from
+the Hierarchical Edge Bundling chart that is the focus of our implementation.
+
+This prototype formed the basis for our implementation(shown and explained in the next section). The
+process of iterating through these design stages was quite useful in improving the final design. By
+communicating with each other as well as with our professor, we were able to create a sophisticated
+design to implement this visualization.
 
 ## Implementation
 The intent of the main viz is to show the connections between different books. In the final version of

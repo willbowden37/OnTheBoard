@@ -48,4 +48,4 @@ A stretch goal would be to have a secondary main display. The books themselves w
 - ### Figure 4
 ![Design3](images/Design3.jpg)
 - ### Figure 5
-![FinalDesign](images/FinalDesign.jpg)
+![FinalDesign](images/ProposalFinalDesign.jpg)

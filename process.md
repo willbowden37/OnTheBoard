@@ -38,10 +38,28 @@ like ours, further analysis can be done by users looking for more information.
 
 ## Data
 We are using a data source on Github that originated from the Goodreads API. It is from a user called zygmuntz
-and is in a repository called <a href="https://github.com/zygmuntz/goodbooks-10k">goodbooks-10k</a>
+and is in a repository called <a href="https://github.com/zygmuntz/goodbooks-10k">goodbooks-10k</a>.
 
 If we need additional data, we can use the Goodreads API directly. Unfortunately, there are some limitations
 with this API like needing elevated permissions to access certain things and only being able to make one
 API request per second that caused us to find another data source that had the data we needed statically.
 
 ## Exploratory Data Analysis
+Most of our early interaction with the data came in list form. In retrospect, this was not the most
+useful way for us to look at the data as it did not allow us to see trends in the dataset. The biggest
+insight gained from looking through these lists was the number of tags that were on each piece of data
+that we needed to filter through.
+ 
+As we went along we did interact with the data in the form of some simple bar charts that made it easier
+to see things. However, as our visualization is far more about the connections between categorical data
+rather than quantitative analysis, there was no substitute to making a prototype of the hierarchical edge
+bundling visualization.
+
+## Design Evolution
+
+
+## Implementation
+
+
+## Evaluation
+

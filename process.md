@@ -59,7 +59,20 @@ bundling visualization.
 
 
 ## Implementation
+The intent of the main viz is to show the connections between different books. In the final version of
+this visualization, the user will be able to change the books shown in it from the search box on the right.
 
+The search box on teh right allows the user to search through the possible books. By clicking on a book
+in the results list, it will be added to all of the visualizations as well as the list at the top, which
+represents all the books currently selected.
+
+At the bottom are 3 supplementary visualizations, a histogram, a bar char, and a scatterplot. For the
+prototype, only the bar chart has been implemented. It shows The average score of each book selected and
+resizes itself based on the number of books selected. As the viz evolves, it will eventually show more
+information like the average scores of genres as well.
+
+![PrototypePart1](images/PrototypePart1.png)
+![PrototypePart2](images/PrototypePart2.png)
 
 ## Evaluation
 

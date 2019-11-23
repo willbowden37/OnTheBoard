@@ -41,6 +41,10 @@ class SearchBox {
             .enter()
             .append('li')
             .text(d=>d.original_title)
+            .on('click', d => {
+                bookSelection.update(d)
+                //Possibly call an update to bundledChart here
+            })
         ;
         
     }

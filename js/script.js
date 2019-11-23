@@ -10,11 +10,12 @@
 
 let bundledChart = new BundledChart();
 
-let bookSelection = new BookSelection(bundledChart);
+let barChart = new Barchart();
+
+let bookSelection = new BookSelection(bundledChart, barChart);
 
 let search = new SearchBox(bundledChart, bookSelection);
 
-let barchart = new Barchart();
 let scatterplot = new Scatterplot();
 let histogram = new Histogram();
 

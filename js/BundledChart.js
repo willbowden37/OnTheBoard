@@ -45,27 +45,27 @@ class BundledChart {
             {id: "14a", parentId: "Mystery"},
 
             {id: "14b", parentId: "Manga"},
-          ])
+          ]);
 
-          console.log(root.leaves())
+          console.log(root.leaves());
           const svg = d3.create("svg")
           .attr("viewBox", [-this.svgWidth / 2, -this.svgWidth / 2, this.svgWidth, this.svgWidth]);
         
-        const node = this.svg.append("g")
-            .attr("font-family", "sans-serif")
-            .attr("font-size", 10)
-            .selectAll("g")
-            .data(root.leaves())
-            .join("g")
-            .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
-            .append("text")
-            .attr("dy", "0.31em")
-            .attr("x", d => d.x < Math.PI ? 6 : -6)
-            .attr("text-anchor", d => d.x < Math.PI ? "start" : "end")
-            .attr("transform", d => d.x >= Math.PI ? "rotate(180)" : null)
-            .text(d => d.id)
-            .each(function(d) { d.text = this; })
-            ;
+        // const node = this.svg.append("g")
+        //     .attr("font-family", "sans-serif")
+        //     .attr("font-size", 10)
+        //     .selectAll("g")
+        //     .data(root.leaves())
+        //     .join("g")
+        //     .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
+        //     .append("text")
+        //     .attr("dy", "0.31em")
+        //     .attr("x", d => d.x < Math.PI ? 6 : -6)
+        //     .attr("text-anchor", d => d.x < Math.PI ? "start" : "end")
+        //     .attr("transform", d => d.x >= Math.PI ? "rotate(180)" : null)
+        //     .text(d => d.id)
+        //     .each(function(d) { d.text = this; })
+        //     ;
         //     .call(text => text.append("title").text(d => `${id(d)}
         // ${d.outgoing.length} outgoing
         // ${d.incoming.length} incoming`));

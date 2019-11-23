@@ -37,10 +37,10 @@ Promise.all([
   let books = files[1]
   let tags = files[2]
   let genres = files[3]
-  console.log('bookTags:', bookTags)
-  console.log('books:', books)
-  console.log('tags:', tags)
-  console.log("genres:", genres)
+  // console.log('bookTags:', bookTags)
+  // console.log('books:', books)
+  // console.log('tags:', tags)
+  // console.log("genres:", genres)
 
   //Data preprocessing
   parseTags(bookTags, books, tags, genres);
@@ -82,20 +82,21 @@ function parseTags(bookTags, books, tags, genres) {
       })
       if (hasTag) {
         taggedBooks.push(JSON.parse(JSON.stringify(books[i])));
-        if (books[i].goodreads_book_id === "13891") console.log("Let the dragon ride again on the winds of time"); // Winter's Heart
+        // if (books[i].goodreads_book_id === "13891") console.log("Let the dragon ride again on the winds of time"); // Winter's Heart
       } else {
         total++
       }
     }
   }
 
-  console.log("Tagged Books", taggedBooks);
-  console.log("Genre Count", genres);
-  console.log("For loop finished", total);
+  // console.log("Tagged Books", taggedBooks);
+  // console.log("Genre Count", genres);
+  // console.log("For loop finished", total);
 
 
   bookSelection.initializeList(taggedBooks)
   search.initialize(bookTags, taggedBooks, tags, genres)
+  bundledChart.initialize(bookTags, taggedBooks, tags, genres)
 
   //Testing BookSelection
   // bookSelection.update(books[10])

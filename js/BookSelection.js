@@ -1,12 +1,14 @@
 class BookSelection {
     /**
      * Constructor
-     * 
+     *
      * @param bundledChart
+     * @param barChart a reference to the bar chart to call its update function
      */
-    constructor(bundledChart) {
+    constructor(bundledChart, barChart) {
         this.bundledChart = bundledChart;
-        this.listedBooks = []
+        this.barChart = barChart;
+        this.listedBooks = [];
         this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
         this.divSelection = d3.select("#book-selection");
         this.divSelection.append('ul').attr('class', 'listSelection');
@@ -65,6 +67,8 @@ class BookSelection {
         ;
 
 
-        
+        // Updates book list in bar chart
+        this.barChart.update(this.listedBooks);
+
     }
 }

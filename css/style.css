@@ -167,3 +167,22 @@ h3{
     font-family: Arial, sans-serif;
     text-align: center;
 }
+
+
+
+/* ========== Styling for Hierarchical Edge Bundling ========== */
+
+.link {
+  stroke: steelblue;
+  stroke-opacity: 0.5;
+  fill: none;
+  pointer-events: none;
+}
+
+.book {
+  
+}
+
+.selected {
+
+}

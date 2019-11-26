@@ -63,87 +63,128 @@ class BundledChart {
         myData.push({
             id: "book1",
             parentId: 'Biography',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book2",
             parentId: 'Biography',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book3",
             parentId: 'Crime',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book4",
             parentId: 'Crime',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book5",
             parentId: 'Fantasy',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book6",
             parentId: 'Fantasy',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book7",
             parentId: 'History',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book8",
             parentId: 'History',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book9",
             parentId: 'Horror',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book10",
             parentId: 'Horror',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book11",
             parentId: 'Manga',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book12",
             parentId: 'Manga',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book13",
             parentId: 'Mystery',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book14",
             parentId: 'Mystery',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book15",
             parentId: 'Romance',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book16",
             parentId: 'Romance',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book17",
             parentId: 'Science Fiction',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book18",
             parentId: 'Science Fiction',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book19",
             parentId: 'Young Adult',
-            data:null
+            connections: ['book2',
+                            'book5']
         },{
             id: "book20",
             parentId: 'Young Adult',
-            data:null
+            connections: ['book2',
+                            'book5']
         })
         
         console.log(myData)
         return myData
+    }
+    // Return a list of connection reviews for the given array of nodes.
+    connectingReviews(nodes) {
+        console.log(nodes)
+        var map = {},
+            links = [];
+    
+        // Compute a map from book to book.
+        nodes.forEach(function(d) {
+        map[d.data.id] = d;
+        });
+    
+        // For each import, construct a link from the source to target node.
+        nodes.forEach(function(d) {
+        if (d.data.connections) d.data.connections.forEach(function(i) {
+            links.push(map[d.data.id].path(map[i]));
+        });
+        });
+        console.log(map)
+        console.log(links)
+        return links;
     }
 
     initialize(bookTags, taggedBooks, tags, genres){
@@ -181,16 +222,15 @@ class BundledChart {
         ;
         // console.log(root)
         cluster(root)
-        // console.log(root)
 
 
-        // link = link
-        //     .data(connectingReviews(root.leaves()))
-        //     .enter().append("path")
-        //     .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
-        //     .attr("class", "link")
-        //     .attr("d", line)
-        // ;
+        link = link
+            .data(this.connectingReviews(root.leaves()))
+            .enter().append("path")
+            .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+            .attr("class", "link")
+            .attr("d", line)
+        ;
         node = node
             .data(root.leaves())
             .enter().append("text")
@@ -203,25 +243,6 @@ class BundledChart {
 
     }
 
-    // Return a list of connection reviews for the given array of nodes.
-    connectingReviews(nodes) {
-        // var map = {},
-        //     imports = [];
-    
-        // // Compute a map from name to node.
-        // nodes.forEach(function(d) {
-        // map[d.data.name] = d;
-        // });
-    
-        // // For each import, construct a link from the source to target node.
-        // nodes.forEach(function(d) {
-        // if (d.data.imports) d.data.imports.forEach(function(i) {
-        //     imports.push(map[d.data.name].path(map[i]));
-        // });
-        // });
-    
-        // return imports;
-    }
 
     update(data) {
         

@@ -168,6 +168,12 @@ h3{
     text-align: center;
 }
 
+/* ========== Styling for Tooltip =========== */
+#tooltip {
+    background: aquamarine;
+    border: 5px solid aquamarine;
+    border-radius: 10px;
+}
 
 
 /* ========== Styling for Hierarchical Edge Bundling ========== */

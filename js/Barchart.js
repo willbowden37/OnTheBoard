@@ -2,10 +2,12 @@ class Barchart {
     /**
      * Constructor
      * 
-     * @param book a specific book to visualize
+     * @param tooltip tooltip used to display info on books selected
      */
 
-    constructor() {
+    constructor(tooltip) {
+
+        this.tooltip = tooltip;
 
         this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
         let divBarchart = d3.select("#bar-chart");
@@ -75,19 +77,15 @@ class Barchart {
             .attr('width', barWidth)
             .attr('height', d => this.heightScale(d.average_rating))
             .style('fill', d => this.colorScale(d.average_rating))
-        ;
-
-        index = 1;
-        group.selectAll('text')
-            .data(bookList)
-            .enter()
-            .append('text')
-            .attr('dx', () => {
-                index++;
-                return xPos[index - 2];
+            .on('mouseover', d => {
+                return this.tooltip.mouseover(d);
             })
-            .attr('dy', this.svgHeight - 25)
-            .text(d => d.original_title)
+            .on('mousemove', () => {
+                return this.tooltip.mousemove();
+            })
+            .on('mouseout', () => {
+            return this.tooltip.mouseout();
+            })
         ;
 
         let axisRange = this.heightRange.reverse();

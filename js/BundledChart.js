@@ -43,6 +43,14 @@ class BundledChart {
         // console.log(genreIds)
         taggedBooks.forEach(book => {
 
+            let myConnections = [];
+            ratings.forEach(rating => {
+                if(rating.book_id === book.book_id){
+                    let userID = rating.user_id;
+                    let booksToConnect = ratings.filter(e => e.user_id === userID && e.book_id !== book.book_id)
+                    myConnections = myConnections.concat(booksToConnect)
+                }
+            })
             
             let myParentIds = []
             genres.forEach(currentGenre => {
@@ -56,12 +64,12 @@ class BundledChart {
         
             let i = 10
             myParentIds.forEach(parentId => {
-                let uniqueBookId = book.book_id.concat(i.toString(36))
+                let uniqueBookId = book.book_id.concat('-'+i.toString(36))
                 myData.push({
                     id: uniqueBookId,
                     parentId:parentId,
                     data:book,
-                    connections:null
+                    connections:myConnections
                 })
                 i++
             })
@@ -71,13 +79,12 @@ class BundledChart {
         //ASSIGN CONNECTIONS
 
 
-        //Will really need to figure out duplicate books for each genre, but
-        //for now I am just using a few. 
+
         // myData.push({
-        //     id: "book1",
+        //     id: "1d",
         //     parentId: 'Biography',
-        //     connections: ['book2',
-        //                     'book5']
+        //     connections: ['3a',
+        //                     '3b']
         // },{
         //     id: "book2",
         //     parentId: 'Biography',

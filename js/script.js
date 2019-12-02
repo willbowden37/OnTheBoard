@@ -1,5 +1,3 @@
-// let tooltip = new Tooltip();
-
 // let votePercentageChart = new VotePercentageChart(tooltip);
 
 // let tileChart = new TileChart(tooltip);
@@ -8,9 +6,11 @@
 
 // let electoralVoteChart = new ElectoralVoteChart(shiftChart);
 
+let tooltip = new Tooltip();
+
 let bundledChart = new BundledChart();
 
-let barChart = new Barchart();
+let barChart = new Barchart(tooltip);
 
 let bookSelection = new BookSelection(bundledChart, barChart);
 

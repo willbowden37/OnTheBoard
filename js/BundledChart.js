@@ -17,21 +17,19 @@ class BundledChart {
 
     }
     parseData(taggedBooks,genres){
-        // console.log(taggedBooks);
-        // console.log(genres);
+        console.log(taggedBooks);
+        console.log(genres);
         let myData = [];
         myData.push({
             id: "Genres",
-            parentId: null,
-            data:null
+            parentId: null
         })
 
         genres.forEach(currentGenre => {
             // console.log(currentGenre)
             myData.push({
                 id: currentGenre.name,
-                parentId: 'Genres',
-                data:null
+                parentId: 'Genres'
             })
 
             // let myBooks = taggedBooks.filter(book => book.tags.includes(currentGenre.id))
@@ -40,134 +38,147 @@ class BundledChart {
 
 
 
+        // var genreIds = $.map(genres, function(value, key) { return value });
+        // console.log(genreIds)
+        taggedBooks.forEach(book => {
+
+            
+            let myParentIds = []
+            genres.forEach(currentGenre => {
+                if(book.tags.includes(currentGenre.id)){
+                    myParentIds.push(currentGenre.name)
+                }
+            })
 
 
-        // taggedBooks.forEach(element => {
-        //     if (element.tags.includes(genre.id))
-
-        //     let myParentId = element.tags.filter(e => e.tags.includes(genre.id));
-
-
+            //Assign unique ID for each book
         
+            let i = 10
+            myParentIds.forEach(parentId => {
+                let uniqueBookId = book.book_id.concat(i.toString(36))
+                myData.push({
+                    id: uniqueBookId,
+                    parentId:parentId,
+                    data:book
+                })
+                i++
+            })
+        })
 
-        //     myData.push({
-        //         id: element.original_title,
-        //         parentId:myParentId,
-        //         data:element
-        //     })
-        // })
+
+        //ASSIGN CONNECTIONS
 
 
         //Will really need to figure out duplicate books for each genre, but
         //for now I am just using a few. 
-        myData.push({
-            id: "book1",
-            parentId: 'Biography',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book2",
-            parentId: 'Biography',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book3",
-            parentId: 'Crime',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book4",
-            parentId: 'Crime',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book5",
-            parentId: 'Fantasy',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book6",
-            parentId: 'Fantasy',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book7",
-            parentId: 'History',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book8",
-            parentId: 'History',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book9",
-            parentId: 'Horror',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book10",
-            parentId: 'Horror',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book11",
-            parentId: 'Manga',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book12",
-            parentId: 'Manga',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book13",
-            parentId: 'Mystery',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book14",
-            parentId: 'Mystery',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book15",
-            parentId: 'Romance',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book16",
-            parentId: 'Romance',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book17",
-            parentId: 'Science Fiction',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book18",
-            parentId: 'Science Fiction',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book19",
-            parentId: 'Young Adult',
-            connections: ['book2',
-                            'book5']
-        },{
-            id: "book20",
-            parentId: 'Young Adult',
-            connections: ['book2',
-                            'book5']
-        })
+        // myData.push({
+        //     id: "book1",
+        //     parentId: 'Biography',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book2",
+        //     parentId: 'Biography',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book3",
+        //     parentId: 'Crime',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book4",
+        //     parentId: 'Crime',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book5",
+        //     parentId: 'Fantasy',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book6",
+        //     parentId: 'Fantasy',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book7",
+        //     parentId: 'History',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book8",
+        //     parentId: 'History',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book9",
+        //     parentId: 'Horror',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book10",
+        //     parentId: 'Horror',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book11",
+        //     parentId: 'Manga',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book12",
+        //     parentId: 'Manga',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book13",
+        //     parentId: 'Mystery',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book14",
+        //     parentId: 'Mystery',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book15",
+        //     parentId: 'Romance',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book16",
+        //     parentId: 'Romance',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book17",
+        //     parentId: 'Science Fiction',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book18",
+        //     parentId: 'Science Fiction',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book19",
+        //     parentId: 'Young Adult',
+        //     connections: ['book2',
+        //                     'book5']
+        // },{
+        //     id: "book20",
+        //     parentId: 'Young Adult',
+        //     connections: ['book2',
+        //                     'book5']
+        // })
         
         console.log(myData)
         return myData
     }
     // Return a list of connection reviews for the given array of nodes.
     connectingReviews(nodes) {
-        console.log(nodes)
+        // console.log(nodes)
         var map = {},
             links = [];
     
@@ -182,8 +193,8 @@ class BundledChart {
             links.push(map[d.data.id].path(map[i]));
         });
         });
-        console.log(map)
-        console.log(links)
+        // console.log(map)
+        // console.log(links)
         return links;
     }
 
@@ -193,7 +204,7 @@ class BundledChart {
         // console.log(taggedBooks)
 
 
-        let diameter = 600,
+        let diameter = this.svgHeight,
             radius = diameter / 2,
             innerRadius = radius - 120;
 
@@ -231,15 +242,27 @@ class BundledChart {
             .attr("class", "link")
             .attr("d", line)
         ;
+        let barWidth = 10
+        let barHeight = .1
         node = node
             .data(root.leaves())
-            .enter().append("text")
+            .enter().append("rect")
             .attr("class", "node")
-            .attr("dy", "0.31em")
-            .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-            .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-            .text(function(d) { return d.id; })
+            .attr('width', barWidth)
+            .attr('height', barHeight)
+            .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)"; })
+            // .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+            // .text(function(d) { return d.id; })
         ;
+        // node = node
+        //     .data(root.leaves())
+        //     .enter().append("text")
+        //     .attr("class", "node")
+        //     .attr("dy", "0.31em")
+        //     .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+        //     .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+        //     .text(function(d) { return d.id; })
+        // ;
 
     }
 

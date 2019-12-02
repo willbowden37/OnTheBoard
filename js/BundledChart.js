@@ -44,13 +44,13 @@ class BundledChart {
         taggedBooks.forEach(book => {
 
             let myConnections = [];
-            ratings.forEach(rating => {
-                if(rating.book_id === book.book_id){
-                    let userID = rating.user_id;
-                    let booksToConnect = ratings.filter(e => e.user_id === userID && e.book_id !== book.book_id)
-                    myConnections = myConnections.concat(booksToConnect)
-                }
-            })
+            // ratings.forEach(rating => {
+            //     if(rating.book_id === book.book_id){
+            //         let userID = rating.user_id;
+            //         let booksToConnect = ratings.filter(e => e.user_id === userID && e.book_id !== book.book_id)
+            //         myConnections = myConnections.concat(booksToConnect)
+            //     }
+            // })
             
             let myParentIds = []
             genres.forEach(currentGenre => {
@@ -96,20 +96,33 @@ class BundledChart {
     }
     // Return a list of connection reviews for the given array of nodes.
     connectingReviews(nodes) {
-        // console.log(nodes)
+        let uniqeIDs = nodes.map(item => item.id);
+        console.log(uniqeIDs)
+        let splitUniqueIDs = []
+        uniqeIDs.forEach(id => {
+            splitUniqueIDs.push(id.split('-')[0])
+        })
+        console.log(splitUniqueIDs)
+        console.log(nodes)
         var map = {},
             links = [];
     
         // Compute a map from book to book.
         nodes.forEach(function(d) {
-        map[d.data.id] = d;
+            map[d.id] = d;
         });
     
         // For each import, construct a link from the source to target node.
-        nodes.forEach(function(d) {
-        if (d.data.connections) d.data.connections.forEach(function(i) {
-            links.push(map[d.data.id].path(map[i]));
-        });
+        nodes.forEach(d => {
+            // console.log(d)
+            if (d.data.connections) d.data.connections.forEach(function(conn) {
+                let indices = splitUniqueIDs.map((e, i) => e === conn ? i : '').filter(String)
+                // console.log(indices)
+
+                indices.forEach(index => {
+                    links.push(map[d.id].path(map[uniqeIDs[index]]));
+                })
+            });
         });
         // console.log(map)
         // console.log(links)
@@ -117,8 +130,9 @@ class BundledChart {
     }
 
     initialize(bookTags, taggedBooks, tags, genres, ratings){
-
-        this.parsedData = this.parseData(taggedBooks,genres, ratings);
+        console.log(ratings)
+        // this.parsedData = this.parseData(taggedBooks,genres, ratings);
+        this.parsedData = ratings;
         // console.log(taggedBooks)
 
 
@@ -152,14 +166,14 @@ class BundledChart {
         // console.log(root)
         cluster(root)
 
-
-        link = link
-            .data(this.connectingReviews(root.leaves()))
-            .enter().append("path")
-            .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
-            .attr("class", "link")
-            .attr("d", line)
-        ;
+        console.log(root.leaves())
+        // link = link
+        //     .data(this.connectingReviews(root.leaves()))
+        //     .enter().append("path")
+        //     .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+        //     .attr("class", "link")
+        //     .attr("d", line)
+        // ;
         let barWidth = 10
         let barHeight = .1
         node = node

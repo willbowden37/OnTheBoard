@@ -1,10 +1,3 @@
-// let votePercentageChart = new VotePercentageChart(tooltip);
-
-// let tileChart = new TileChart(tooltip);
-
-// let shiftChart = new ShiftChart();
-
-// let electoralVoteChart = new ElectoralVoteChart(shiftChart);
 
 let tooltip = new Tooltip();
 
@@ -29,7 +22,7 @@ Promise.all([
   d3.csv("data/book_tags.csv"),
   d3.csv("data/books.csv"),
   d3.csv("data/tags.csv"),
-  d3.csv("data/myRatings.csv"),
+  d3.json("data/myRatings.json"),
   d3.json("data/genres.json")
   // d3.csv("data/to_read.csv"),
 ]).then(function (files) {
@@ -97,24 +90,6 @@ function parseTags(bookTags, books, tags, genres,ratings) {
   // console.log("For loop finished", total);
 
 
-  //Parse the ratings
-  // let bookIds = taggedBooks.map(item => item.book_id);
-  // let myRatings = []
-  // ratings.forEach(rate => {
-  //     if(bookIds.includes(rate.book_id)){
-  //       myRatings.push(rate)
-  //     }
-  // })
-
-  //save myRatings to CSV file
-  // const rows = [
-  //   ["name1", "city1", "otherThing"],
-  //   ["name2", "city2", "someOther"]
-  // ];
-
-  // let myRatingsCsv = "data:text/csv;charset=utf-8," + myRatings.map(e => e.user_id+','+e.book_id +','+e.rating+'\n');
-  // let encodedUri = encodeURI(myRatingsCsv);
-  // window.open(encodedUri);
 
 
   bookSelection.initializeList(taggedBooks)

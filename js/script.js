@@ -29,6 +29,7 @@ Promise.all([
   d3.csv("data/book_tags.csv"),
   d3.csv("data/books.csv"),
   d3.csv("data/tags.csv"),
+  d3.csv("data/myRatings.csv"),
   d3.json("data/genres.json")
   // d3.csv("data/to_read.csv"),
 ]).then(function (files) {
@@ -37,20 +38,21 @@ Promise.all([
   let bookTags = files[0]
   let books = files[1]
   let tags = files[2]
-  let genres = files[3]
+  let ratings = files[3]
+  let genres = files[4]
   // console.log('bookTags:', bookTags)
   // console.log('books:', books)
   // console.log('tags:', tags)
   // console.log("genres:", genres)
 
   //Data preprocessing
-  parseTags(bookTags, books, tags, genres);
+  parseTags(bookTags, books, tags, genres, ratings);
 
   //Call update to
 
 })
 
-function parseTags(bookTags, books, tags, genres) {
+function parseTags(bookTags, books, tags, genres,ratings) {
   for (let i = 0; i < bookTags.length; i++) {
     let tag = bookTags[i];
     let id = parseInt(tag.goodreads_book_id);
@@ -95,9 +97,29 @@ function parseTags(bookTags, books, tags, genres) {
   // console.log("For loop finished", total);
 
 
+  //Parse the ratings
+  // let bookIds = taggedBooks.map(item => item.book_id);
+  // let myRatings = []
+  // ratings.forEach(rate => {
+  //     if(bookIds.includes(rate.book_id)){
+  //       myRatings.push(rate)
+  //     }
+  // })
+
+  //save myRatings to CSV file
+  // const rows = [
+  //   ["name1", "city1", "otherThing"],
+  //   ["name2", "city2", "someOther"]
+  // ];
+
+  // let myRatingsCsv = "data:text/csv;charset=utf-8," + myRatings.map(e => e.user_id+','+e.book_id +','+e.rating+'\n');
+  // let encodedUri = encodeURI(myRatingsCsv);
+  // window.open(encodedUri);
+
+
   bookSelection.initializeList(taggedBooks)
   search.initialize(bookTags, taggedBooks, tags, genres)
-  bundledChart.initialize(bookTags, taggedBooks, tags, genres)
+  bundledChart.initialize(bookTags, taggedBooks, tags, genres,ratings)
 
   //Testing BookSelection
   // bookSelection.update(books[10])

@@ -16,9 +16,10 @@ class BundledChart {
 
 
     }
-    parseData(taggedBooks,genres){
+    parseData(taggedBooks,genres, ratings){
         console.log(taggedBooks);
         console.log(genres);
+        console.log(ratings);
         let myData = [];
         myData.push({
             id: "Genres",
@@ -59,7 +60,8 @@ class BundledChart {
                 myData.push({
                     id: uniqueBookId,
                     parentId:parentId,
-                    data:book
+                    data:book,
+                    connections:null
                 })
                 i++
             })
@@ -81,98 +83,7 @@ class BundledChart {
         //     parentId: 'Biography',
         //     connections: ['book2',
         //                     'book5']
-        // },{
-        //     id: "book3",
-        //     parentId: 'Crime',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book4",
-        //     parentId: 'Crime',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book5",
-        //     parentId: 'Fantasy',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book6",
-        //     parentId: 'Fantasy',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book7",
-        //     parentId: 'History',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book8",
-        //     parentId: 'History',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book9",
-        //     parentId: 'Horror',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book10",
-        //     parentId: 'Horror',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book11",
-        //     parentId: 'Manga',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book12",
-        //     parentId: 'Manga',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book13",
-        //     parentId: 'Mystery',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book14",
-        //     parentId: 'Mystery',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book15",
-        //     parentId: 'Romance',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book16",
-        //     parentId: 'Romance',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book17",
-        //     parentId: 'Science Fiction',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book18",
-        //     parentId: 'Science Fiction',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book19",
-        //     parentId: 'Young Adult',
-        //     connections: ['book2',
-        //                     'book5']
-        // },{
-        //     id: "book20",
-        //     parentId: 'Young Adult',
-        //     connections: ['book2',
-        //                     'book5']
-        // })
-        
+ 
         console.log(myData)
         return myData
     }
@@ -198,9 +109,9 @@ class BundledChart {
         return links;
     }
 
-    initialize(bookTags, taggedBooks, tags, genres){
+    initialize(bookTags, taggedBooks, tags, genres, ratings){
 
-        this.parsedData = this.parseData(taggedBooks,genres);
+        this.parsedData = this.parseData(taggedBooks,genres, ratings);
         // console.log(taggedBooks)
 
 

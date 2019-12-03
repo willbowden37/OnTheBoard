@@ -5,9 +5,10 @@ class BookSelection {
      * @param bundledChart
      * @param barChart a reference to the bar chart to call its update function
      */
-    constructor(bundledChart, barChart) {
+    constructor(bundledChart, barChart, stackedChart) {
         this.bundledChart = bundledChart;
         this.barChart = barChart;
+        this.stackedChart = stackedChart;
         this.listedBooks = [];
         this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
         this.divSelection = d3.select("#book-selection");
@@ -44,7 +45,8 @@ class BookSelection {
 
         //possibly sort the list?
         
-        let list = this.divSelection.select('ul')
+        let list = this.divSelection.select('ul');
+        let update = this.update.bind(this);
         
         list.selectAll('li').remove()
 
@@ -61,14 +63,15 @@ class BookSelection {
         .on('mouseout', d => {
 
         })
-        .on('click', d => {
-            //Possibly call an update to bundledChart here
+        .on('click', function(d) {
+            update(d);
         })
         ;
 
 
         // Updates book list in bar chart
         this.barChart.update(this.listedBooks);
+        this.stackedChart.update(this.listedBooks);
 
     }
 }

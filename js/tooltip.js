@@ -1,6 +1,6 @@
 class Tooltip {
 
-    constructor() {
+    constructor(bundledChart) {
         //----------------------------------------
         // tooltip
         //----------------------------------------
@@ -13,6 +13,8 @@ class Tooltip {
             .attr('id', 'tooltip')
             .classed('tooltipDiv', true)
         ;
+
+        this.bundledChart = bundledChart;
     };
 
     /**
@@ -35,6 +37,7 @@ class Tooltip {
             .html(this.tooltip_html(d, t))
         ;
         this.tooltip.style("visibility", "visible");
+        this.bundledChart.updateHover(d, true);
     }
 
     mousemove() {
@@ -42,8 +45,9 @@ class Tooltip {
             .style("left",(d3.event.pageX+10)+"px");
     }
 
-    mouseout() {
+    mouseout(d) {
         this.tooltip.style("visibility", "hidden");
+        this.bundledChart.updateHover(d, false);
     }
 
 }

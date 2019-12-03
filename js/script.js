@@ -1,7 +1,7 @@
 
-let tooltip = new Tooltip();
-
 let bundledChart = new BundledChart();
+
+let tooltip = new Tooltip(bundledChart);
 
 let barChart = new Barchart(tooltip);
 let scatterplot = new Scatterplot(tooltip);

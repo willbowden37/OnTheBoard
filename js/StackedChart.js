@@ -57,27 +57,27 @@ class StackedChart {
                 {
                     nums: parseInt(book.ratings_1), coords: [], average_rating: book.average_rating,
                     original_title: book.original_title,
-                    total_ratings: total
+                    total_ratings: total, book_id: book.book_id
                 },
                 {
                     nums: parseInt(book.ratings_2), coords: [], average_rating: book.average_rating,
                     original_title: book.original_title,
-                    total_ratings: total
+                    total_ratings: total, book_id: book.book_id
                 },
                 {
                     nums: parseInt(book.ratings_3), coords: [], average_rating: book.average_rating,
                     original_title: book.original_title,
-                    total_ratings: total
+                    total_ratings: total, book_id: book.book_id
                 },
                 {
                     nums: parseInt(book.ratings_4), coords: [], average_rating: book.average_rating,
                     original_title: book.original_title,
-                    total_ratings: total
+                    total_ratings: total, book_id: book.book_id
                 },
                 {
                     nums: parseInt(book.ratings_5), coords: [], average_rating: book.average_rating,
                     original_title: book.original_title,
-                    total_ratings: total
+                    total_ratings: total, book_id: book.book_id
                 }
             ];
             ratings[0].coords.push(first, second);
@@ -130,8 +130,8 @@ class StackedChart {
             .on('mousemove', () => {
                 return this.tooltip.mousemove();
             })
-            .on('mouseout', () => {
-                return this.tooltip.mouseout();
+            .on('mouseout', (d) => {
+                return this.tooltip.mouseout(d);
             })
             ;
 

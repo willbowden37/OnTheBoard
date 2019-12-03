@@ -21,7 +21,8 @@ class Tooltip {
 
         let text = '<h2>' + d.original_title + '</h2>';
         text += '<ul>';
-        text += '<li> Average Rating: ' + d.average_rating + ' </li>'
+        text += '<li> Average Rating: ' + d.average_rating + ' </li>';
+        text += '<li> Total Ratings: ' + d.ratings_count + ' </li>';
         text += '</ul>';
 
         return text;

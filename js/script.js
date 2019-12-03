@@ -11,8 +11,6 @@ let bookSelection = new BookSelection(bundledChart, barChart, scatterplot, stack
 
 let search = new SearchBox(bundledChart, bookSelection);
 
-let scatterplot = new Scatterplot();
-
 // Load the data corresponding to all the election years.
 // Pass this data and instances of all the charts that update on year
 // selection to yearChart's constructor.

@@ -9,6 +9,7 @@ class Tooltip {
             .style("position", "absolute")
             .style("z-index", "10")
             .style("visibility", "hidden")
+            // .style("background", "#FFFFFF")
             .attr('id', 'tooltip')
             .classed('tooltipDiv', true)
         ;
@@ -17,13 +18,13 @@ class Tooltip {
     /**
      * Gets the HTML content for a tool tip.
      */
-    tooltip_html(d) {
+    tooltip_html(d, t) {
 
         let text = '<h4>' + d.original_title + '</h4>';
         text += '<p> Average Rating: ' + d.average_rating + ' </p>'
-        text += '<p> Total Rating: ' + d.ratings_count + ' </p>'
+        if(d.ratings_count != null) text += '<p> Total Ratings: ' + d.ratings_count + ' </p>'
 
-        if (t)
+        if (t != null && t)
             text += t;
 
         return text;

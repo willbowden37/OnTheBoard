@@ -28,6 +28,7 @@ class BookSelection {
         //This receives a book element
         // console.log(book)
 
+        let added = false;
  
         if (this.listedBooks.some(e => e.book_id === book.book_id)) {
             //list contains book already, remove it.
@@ -40,6 +41,7 @@ class BookSelection {
         else{
             //add book to list
             this.listedBooks.push(book)
+            added = true;
         }
 
         //possibly sort the list?
@@ -67,8 +69,9 @@ class BookSelection {
         ;
 
 
-        // Updates book list in bar chart
+        // Updates charts
         this.barChart.update(this.listedBooks);
+        this.bundledChart.update(book, added);
 
     }
 }

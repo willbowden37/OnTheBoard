@@ -48,8 +48,6 @@ class Scatterplot {
         this.svg.selectAll('g').remove();
 
         let axisRange = this.heightRange;
-        console.log(axisRange);
-        console.log(this.heightRange);
         let yAxisScale = d3.scaleQuantile()
             .domain(this.domain)
             .range(axisRange)

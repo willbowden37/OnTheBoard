@@ -74,36 +74,13 @@ class BundledChart {
                 i++
             })
         })
-
-
-        //ASSIGN CONNECTIONS
-
-
-
-        // myData.push({
-        //     id: "1d",
-        //     parentId: 'Biography',
-        //     connections: ['3a',
-        //                     '3b']
-        // },{
-        //     id: "book2",
-        //     parentId: 'Biography',
-        //     connections: ['book2',
-        //                     'book5']
  
         console.log(myData)
         return myData
     }
     // Return a list of connection reviews for the given array of nodes.
     connectingReviews(nodes) {
-        let uniqeIDs = nodes.map(item => item.id);
-        console.log(uniqeIDs)
-        let splitUniqueIDs = []
-        uniqeIDs.forEach(id => {
-            splitUniqueIDs.push(id.split('-')[0])
-        })
-        console.log(splitUniqueIDs)
-        console.log(nodes)
+        // console.log(nodes)
         var map = {},
             links = [];
     
@@ -112,29 +89,21 @@ class BundledChart {
             map[d.id] = d;
         });
     
+        console.log('started')
         // For each import, construct a link from the source to target node.
         nodes.forEach(d => {
             // console.log(d)
             if (d.data.connections) d.data.connections.forEach(function(conn) {
-                let indices = splitUniqueIDs.map((e, i) => e === conn ? i : '').filter(String)
-                // console.log(indices)
-
-                indices.forEach(index => {
-                    links.push(map[d.id].path(map[uniqeIDs[index]]));
-                })
+                links.push(map[d.id].path(map[conn]));
             });
         });
+        console.log('done')
         // console.log(map)
         // console.log(links)
         return links;
     }
 
-    initialize(bookTags, taggedBooks, tags, genres, ratings){
-        console.log(ratings)
-        // this.parsedData = this.parseData(taggedBooks,genres, ratings);
-        this.parsedData = ratings;
-        // console.log(taggedBooks)
-
+    initialize(ratings){
 
         let diameter = this.svgHeight,
             radius = diameter / 2,
@@ -161,19 +130,25 @@ class BundledChart {
         let root = d3.stratify()
             .id(d => d.id)
             .parentId(d => d.parentId)
-            (this.parsedData)
+            (ratings)
         ;
         // console.log(root)
         cluster(root)
 
-        console.log(root.leaves())
+        // console.log(root.leaves())
+        let myLinks = this.connectingReviews(root.leaves())
+        console.log(myLinks)
         // link = link
-        //     .data(this.connectingReviews(root.leaves()))
+        //     .data(myLinks)
         //     .enter().append("path")
-        //     .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+        //     .each(function(d) { 
+        //         console.log(d)
+        //         d.source = d[0], d.target = d[d.length - 1]; 
+        //     })
         //     .attr("class", "link")
         //     .attr("d", line)
         // ;
+
         let barWidth = 10
         let barHeight = .1
         node = node
@@ -186,15 +161,6 @@ class BundledChart {
             // .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
             // .text(function(d) { return d.id; })
         ;
-        // node = node
-        //     .data(root.leaves())
-        //     .enter().append("text")
-        //     .attr("class", "node")
-        //     .attr("dy", "0.31em")
-        //     .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-        //     .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-        //     .text(function(d) { return d.id; })
-        // ;
 
     }
 

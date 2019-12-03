@@ -22,7 +22,7 @@ Promise.all([
   d3.csv("data/book_tags.csv"),
   d3.csv("data/books.csv"),
   d3.csv("data/tags.csv"),
-  d3.json("data/myRatings.json"),
+  d3.json("data/bestRatingsYet.json"),
   d3.json("data/genres.json")
   // d3.csv("data/to_read.csv"),
 ]).then(function (files) {
@@ -94,7 +94,7 @@ function parseTags(bookTags, books, tags, genres,ratings) {
 
   bookSelection.initializeList(taggedBooks)
   search.initialize(bookTags, taggedBooks, tags, genres)
-  bundledChart.initialize(bookTags, taggedBooks, tags, genres,ratings)
+  bundledChart.initialize(ratings)
 
   //Testing BookSelection
   // bookSelection.update(books[10])

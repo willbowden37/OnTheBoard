@@ -4,12 +4,12 @@ let tooltip = new Tooltip();
 let bundledChart = new BundledChart();
 
 let barChart = new Barchart(tooltip);
+let scatterplot = new Scatterplot(tooltip);
 
-let bookSelection = new BookSelection(bundledChart, barChart);
+let bookSelection = new BookSelection(bundledChart, barChart, scatterplot);
 
 let search = new SearchBox(bundledChart, bookSelection);
 
-let scatterplot = new Scatterplot();
 let histogram = new Histogram();
 
 

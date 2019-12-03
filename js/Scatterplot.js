@@ -5,7 +5,7 @@ class Scatterplot {
      * @param book a specific book to visualize
      */
 
-    constructor() {
+    constructor(tooltip) {
 
         this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
         let divScatterplot = d3.select("#scatterplot");
@@ -18,9 +18,18 @@ class Scatterplot {
             .attr("width", this.svgWidth)
             .attr("height", this.svgHeight)
         ;
+
+        this.tooltip = tooltip;
+
+        this.svg.append('text')
+            .attr('class', 'scatterplotTitle')
+            .attr('dx',this.svgWidth/2 - 50)
+            .attr('dy', 20)
+            .text('Scatterplot')
+        ;
     }
 
-    update(book) {
-        
+    update(books) {
+        console.log(books);
     }
 }

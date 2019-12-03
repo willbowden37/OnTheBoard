@@ -168,6 +168,13 @@ h3{
     text-align: center;
 }
 
+/* ========== Styling for Scatterplot ========== */
+.scatterplotTitle {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
 /* ========== Styling for Tooltip =========== */
 #tooltip {
     background: aquamarine;

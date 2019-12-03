@@ -19,24 +19,25 @@ class Tooltip {
      */
     tooltip_html(d) {
 
-        let text = '<h2>' + d.original_title + '</h2>';
-        text += '<ul>';
-        text += '<li> Average Rating: ' + d.average_rating + ' </li>';
-        text += '<li> Total Ratings: ' + d.ratings_count + ' </li>';
-        text += '</ul>';
+        let text = '<h4>' + d.original_title + '</h4>';
+        text += '<p> Average Rating: ' + d.average_rating + ' </p>'
+        text += '<p> Total Rating: ' + d.ratings_count + ' </p>'
+
+        if (t)
+            text += t;
 
         return text;
     }
 
-    mouseover(d) {
+    mouseover(d, t) {
         this.tooltip
-            .html(this.tooltip_html(d))
+            .html(this.tooltip_html(d, t))
         ;
         this.tooltip.style("visibility", "visible");
     }
 
     mousemove() {
-        this.tooltip.style("top", (d3.event.pageY-50)+"px")
+        this.tooltip.style("top", (d3.event.pageY-this.tooltip.node().getBoundingClientRect().height)+"px")
             .style("left",(d3.event.pageX+10)+"px");
     }
 

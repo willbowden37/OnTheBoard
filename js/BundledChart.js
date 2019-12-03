@@ -83,6 +83,7 @@ class BundledChart {
         // console.log(nodes)
         var map = {},
             links = [];
+        let maxIndividualLinks = 2;
     
         // Compute a map from book to book.
         nodes.forEach(function(d) {
@@ -93,9 +94,12 @@ class BundledChart {
         // For each import, construct a link from the source to target node.
         nodes.forEach(d => {
             // console.log(d)
-            if (d.data.connections) d.data.connections.forEach(function(conn) {
-                links.push(map[d.id].path(map[conn]));
-            });
+            if (d.data.connections) {
+                for (let i = 0; i < d.data.connections.length && i < maxIndividualLinks; i++) {
+                    let conn = d.data.connections[i];
+                    links.push(map[d.id].path(map[conn]));
+                }
+            }
         });
         console.log('done')
         // console.log(map)
@@ -105,7 +109,7 @@ class BundledChart {
 
     initialize(ratings){
 
-        let diameter = this.svgHeight,
+        let diameter = this.svgHeight * 1.3,
             radius = diameter / 2,
             innerRadius = radius - 120;
 
@@ -118,7 +122,7 @@ class BundledChart {
             .angle(function(d) { return d.x / 180 * Math.PI; });
 
         let group = this.svg.append('g')
-            .attr("transform", "translate(" + radius + "," + radius + ")")
+            .attr("transform", "translate(" + radius * 1.5 + "," + radius * 0.75 + ")")
         ;
 
         let link = group.append("g").selectAll(".link"),
@@ -135,19 +139,22 @@ class BundledChart {
         // console.log(root)
         cluster(root)
 
-        // console.log(root.leaves())
+        console.log("root and leaves");
+        console.log(root);
+        console.log(root.leaves());
         let myLinks = this.connectingReviews(root.leaves())
         console.log(myLinks)
-        // link = link
-        //     .data(myLinks)
-        //     .enter().append("path")
-        //     .each(function(d) { 
-        //         console.log(d)
-        //         d.source = d[0], d.target = d[d.length - 1]; 
-        //     })
-        //     .attr("class", "link")
-        //     .attr("d", line)
-        // ;
+        link = link
+            .data(myLinks)
+            .enter().append("path")
+            .each(function(d) { 
+                //console.log(d)
+                d.source = d[0], d.target = d[d.length - 1]; 
+            })
+            .attr("class", "link")
+            .attr("d", line)
+        ;
+        console.log("Done with links");
 
         let barWidth = 10
         let barHeight = .1

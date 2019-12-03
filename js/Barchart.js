@@ -63,6 +63,7 @@ class Barchart {
         let xPos = [bookList.length];
         xPos[0] = barWidth/2;
         let index = 1;
+        let tooltip = this.tooltip;
 
         group.selectAll('rect')
             .data(bookList)
@@ -77,14 +78,14 @@ class Barchart {
             .attr('width', barWidth)
             .attr('height', d => this.heightScale(d.average_rating))
             .style('fill', d => this.colorScale(d.average_rating))
-            .on('mouseover', d => {
-                return this.tooltip.mouseover(d);
+            .on('mouseover', function(d) {
+                return tooltip.mouseover(d);
             })
             .on('mousemove', () => {
                 return this.tooltip.mousemove();
             })
-            .on('mouseout', () => {
-            return this.tooltip.mouseout();
+            .on('mouseout', function(d) {
+            return tooltip.mouseout(d);
             })
         ;
 

@@ -10,9 +10,14 @@ class BundledChart {
         this.svg = divScatterplot.append("svg")
             .attr("width", this.svgWidth)
             .attr("height", this.svgHeight)
+            .attr("id", "mainSvg")
         ;
 
         this.booklist = [];
+        this.clonedNodes = [];
+
+        this.booklistHover = [];
+        this.clonedNodesHover = [];
 
 
     }
@@ -122,11 +127,12 @@ class BundledChart {
             .angle(function(d) { return d.x / 180 * Math.PI; });
 
         let group = this.svg.append('g')
-            .attr("transform", "translate(" + radius * 1.5 + "," + radius * 0.75 + ")")
+            .attr("transform", "translate(" + this.svgWidth / 2 + "," + this.svgHeight / 2 + ")")
         ;
 
-        this.link = group.append("g").selectAll(".link");
+        this.link = group.append("g").attr('id', 'myMainG').selectAll(".link");
         let node = group.append("g").selectAll(".node");
+        let text = group.append("g").selectAll(".parentText");
 
         // console.log('hi')
 
@@ -142,6 +148,9 @@ class BundledChart {
         console.log("root and leaves");
         console.log(root);
         console.log(root.leaves());
+        console.log(root.descendants());
+        let myGenres = root.descendants().slice(1, 11);
+        console.log(myGenres);
         let myLinks = this.connectingReviews(root.leaves())
         console.log(myLinks)
         this.link = this.link
@@ -165,15 +174,28 @@ class BundledChart {
             .attr("class", "node")
             .attr('width', barWidth)
             .attr('height', barHeight)
+            .attr('class', d => d.parentId)
             .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)"; })
             // .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
             // .text(function(d) { return d.id; })
         ;
 
+        text = text.data(myGenres)
+            .enter()
+            .append('text')
+            .attr('class', 'barChartTitle')
+            .attr('dx',d => d.y * 2.1 * Math.cos((d.x - 90) * Math.PI / 180))
+            .attr('dy', d => d.y * 2.1 * Math.sin((d.x - 90) * Math.PI / 180))
+            .text(d => d.id)
+
     }
 
 
     update(book, added) {
+        this.clonedNodes.forEach(node => {
+            let rn = document.getElementById(node);
+            if (rn) rn.remove();
+        });
         if(added) {
             this.booklist.push(book);
         } else {
@@ -193,11 +215,54 @@ class BundledChart {
             for(let eachBook of this.booklist) {
                 if(eachBook.book_id === book1Id || eachBook.book_id === book2Id) {
                     eachLink.classList.add('selected');
+                    let node = document.getElementById(eachLink.id);
+                    let newNode = node.cloneNode(true);
+                    let newId = eachLink.id + "-clone";
+                    this.clonedNodes.push(newId);
+                    newNode.id = newId;
+                    document.querySelector("#myMainG").appendChild(newNode);
                 }
             }
             if(!added) {
                 if(book.book_id === book1Id || book.book_id === book2Id) {
-                    if(eachLink.classList.contains('selected')) eachLink.classList.remove('selected');
+                    if(eachLink.classList.contains('selected')) {
+                        eachLink.classList.remove('selected');
+                    }
+                }
+            }
+        }
+    }
+
+    updateHover(book, added) {
+        this.clonedNodesHover.forEach(node => {
+            let rn = document.getElementById(node);
+            if (rn) rn.remove();
+        });
+        if(added) {
+            this.booklistHover.push(book);
+        } else {
+            let deleteIndex = -1;
+            for(let i = 0; i < this.booklistHover.length; i++) {
+                if(this.booklistHover[i].original_title === book.original_title) {
+                    deleteIndex = i;
+                }
+            }
+            if(deleteIndex>=0) this.booklistHover.splice(deleteIndex, 1);
+        }
+
+        for(let eachLink of this.link._groups[0]) {
+            let bookIds = eachLink.id.split('-');
+            let book1Id = bookIds[0];
+            let book2Id = bookIds[1];
+            for(let eachBook of this.booklistHover) {
+                if(eachBook.book_id === book1Id || eachBook.book_id === book2Id) {
+                    let node = document.getElementById(eachLink.id);
+                    let newNode = node.cloneNode(true);
+                    let newId = eachLink.id + "-clone-hover";
+                    this.clonedNodesHover.push(newId);
+                    newNode.id = newId;
+                    newNode.classList.add("selectedHover");
+                    document.querySelector("#myMainG").appendChild(newNode);
                 }
             }
         }

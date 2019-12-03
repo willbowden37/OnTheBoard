@@ -41,7 +41,7 @@ class Scatterplot {
         this.colorScale = d3.scaleQuantile()
             .domain(this.domain)
             .range(colorRange);
-        this.bandSize = 500;
+        this.bandSize = this.svgWidth;
     }
 
     update(books) {
@@ -86,8 +86,8 @@ class Scatterplot {
             .on('mousemove', () => {
                 return this.tooltip.mousemove();
             })
-            .on('mouseout', () => {
-                return this.tooltip.mouseout();
+            .on('mouseout', (d) => {
+                return this.tooltip.mouseout(d);
             })
         ;
 

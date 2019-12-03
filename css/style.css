@@ -179,10 +179,11 @@ h3{
 /* ========== Styling for Hierarchical Edge Bundling ========== */
 
 .link {
-  stroke: steelblue;
-  stroke-opacity: 0.5;
-  fill: none;
-  pointer-events: none;
+    stroke: steelblue;
+    stroke-opacity: 0.5;
+    fill: none;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .node {
@@ -194,5 +195,6 @@ h3{
 }
 
 .selected {
-
+    stroke: red;
+    z-index: 100;
 }

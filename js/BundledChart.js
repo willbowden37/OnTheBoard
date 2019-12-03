@@ -12,7 +12,7 @@ class BundledChart {
             .attr("height", this.svgHeight)
         ;
 
-
+        this.booklist = [];
 
 
     }
@@ -125,8 +125,8 @@ class BundledChart {
             .attr("transform", "translate(" + radius * 1.5 + "," + radius * 0.75 + ")")
         ;
 
-        let link = group.append("g").selectAll(".link"),
-            node = group.append("g").selectAll(".node");
+        this.link = group.append("g").selectAll(".link");
+        let node = group.append("g").selectAll(".node");
 
         // console.log('hi')
 
@@ -144,7 +144,7 @@ class BundledChart {
         console.log(root.leaves());
         let myLinks = this.connectingReviews(root.leaves())
         console.log(myLinks)
-        link = link
+        this.link = this.link
             .data(myLinks)
             .enter().append("path")
             .each(function(d) { 
@@ -153,6 +153,7 @@ class BundledChart {
             })
             .attr("class", "link")
             .attr("d", line)
+            .attr("id", d => d[0].id + "-" + d[d.length - 1].id)
         ;
         console.log("Done with links");
 
@@ -172,7 +173,33 @@ class BundledChart {
     }
 
 
-    update(data) {
-        
+    update(book, added) {
+        if(added) {
+            this.booklist.push(book);
+        } else {
+            let deleteIndex = -1;
+            for(let i = 0; i < this.booklist.length; i++) {
+                if(this.booklist[i].original_title === book.original_title) {
+                    deleteIndex = i;
+                }
+            }
+            if(deleteIndex>=0) this.booklist.splice(deleteIndex, 1);
+        }
+
+        for(let eachLink of this.link._groups[0]) {
+            let bookIds = eachLink.id.split('-');
+            let book1Id = bookIds[0];
+            let book2Id = bookIds[1];
+            for(let eachBook of this.booklist) {
+                if(eachBook.book_id === book1Id || eachBook.book_id === book2Id) {
+                    eachLink.classList.add('selected');
+                }
+            }
+            if(!added) {
+                if(book.book_id === book1Id || book.book_id === book2Id) {
+                    if(eachLink.classList.contains('selected')) eachLink.classList.remove('selected');
+                }
+            }
+        }
     }
 }

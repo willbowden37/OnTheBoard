@@ -1,6 +1,6 @@
 class Tooltip {
 
-    constructor() {
+    constructor(bundledChart) {
         //----------------------------------------
         // tooltip
         //----------------------------------------
@@ -13,52 +13,41 @@ class Tooltip {
             .attr('id', 'tooltip')
             .classed('tooltipDiv', true)
         ;
+
+        this.bundledChart = bundledChart;
     };
 
     /**
      * Gets the HTML content for a tool tip.
      */
-    tooltip_html(d) {
-        // let text = "<h2 class ="  + this.chooseClass(d.State_Winner) +
-        //     " >" + d.State + "</h2>";
-        // text +=  "Electoral Votes: " + d.Total_EV;
-        // text += "<ul>"
-        // // Democrat
-        // text += "<li class = democrat>" +
-        //     d.D_Nominee_prop+":\t\t"+d.D_Votes+"("+d.D_Percentage+"%)" + "</li>"
-        // // Republican
-        // text += "<li class = republican>" +
-        //     d.R_Nominee_prop+":\t\t"+d.R_Votes+"("+d.R_Percentage+"%)" + "</li>"
-        // // Independent
-        // if (d.I_Percentage) {
-        //     text += "<li class = independent>" +
-        //         d.I_Nominee_prop+":\t\t"+d.I_Votes+"("+d.I_Percentage+"%)" + "</li>"
-        // }
-        // text += "</ul>";
+    tooltip_html(d, t) {
 
-        let text = '<h2>' + d.original_title + '</h2>';
-        text += '<ul>';
-        text += '<li> Average Rating: ' + d.average_rating + ' </li>'
-        text += '</ul>';
+        let text = '<h4>' + d.original_title + '</h4>';
+        text += '<p> Average Rating: ' + d.average_rating + ' </p>'
+        if(d.ratings_count != null) text += '<p> Total Ratings: ' + d.ratings_count + ' </p>'
+
+        if (t != null && t)
+            text += t;
 
         return text;
     }
 
-    mouseover(d) {
+    mouseover(d, t) {
         this.tooltip
-            .html(this.tooltip_html(d))
-            // .classed('tooltip-title', true)
+            .html(this.tooltip_html(d, t))
         ;
         this.tooltip.style("visibility", "visible");
+        this.bundledChart.updateHover(d, true);
     }
 
     mousemove() {
-        this.tooltip.style("top", (d3.event.pageY-30)+"px")
+        this.tooltip.style("top", (d3.event.pageY-this.tooltip.node().getBoundingClientRect().height)+"px")
             .style("left",(d3.event.pageX+10)+"px");
     }
 
-    mouseout() {
+    mouseout(d) {
         this.tooltip.style("visibility", "hidden");
+        this.bundledChart.updateHover(d, false);
     }
 
 }

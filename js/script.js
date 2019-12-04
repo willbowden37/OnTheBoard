@@ -1,17 +1,15 @@
 
-let tooltip = new Tooltip();
-
 let bundledChart = new BundledChart();
 
-let barChart = new Barchart(tooltip);
+let tooltip = new Tooltip(bundledChart);
 
-let bookSelection = new BookSelection(bundledChart, barChart);
+let barChart = new Barchart(tooltip);
+let scatterplot = new Scatterplot(tooltip);
+let stackedChart = new StackedChart(tooltip);
+
+let bookSelection = new BookSelection(bundledChart, barChart, scatterplot, stackedChart);
 
 let search = new SearchBox(bundledChart, bookSelection);
-
-let scatterplot = new Scatterplot();
-let histogram = new Histogram();
-
 
 // Load the data corresponding to all the election years.
 // Pass this data and instances of all the charts that update on year
@@ -28,15 +26,11 @@ Promise.all([
 ]).then(function (files) {
   // files[0] will contain file1.csv
   // files[1] will contain file2.csv
-  let bookTags = files[0]
-  let books = files[1]
-  let tags = files[2]
-  let ratings = files[3]
-  let genres = files[4]
-  // console.log('bookTags:', bookTags)
-  // console.log('books:', books)
-  // console.log('tags:', tags)
-  // console.log("genres:", genres)
+  let bookTags = files[0];
+  let books = files[1];
+  let tags = files[2];
+  let ratings = files[3];
+  let genres = files[4];
 
   //Data preprocessing
   parseTags(bookTags, books, tags, genres, ratings);
@@ -95,19 +89,4 @@ function parseTags(bookTags, books, tags, genres,ratings) {
   bookSelection.initializeList(taggedBooks)
   search.initialize(bookTags, taggedBooks, tags, genres)
   bundledChart.initialize(ratings)
-
-  //Testing BookSelection
-  // bookSelection.update(books[10])
-  // bookSelection.update(books[20])
-  // bookSelection.update(books[30])
-  // bookSelection.update(books[11])
-  // bookSelection.update(books[21])
-  // bookSelection.update(books[31])
-  // bookSelection.update(books[12])
-  // bookSelection.update(books[22])
-  // bookSelection.update(books[32])
-  // bookSelection.update(books[13])
-  // bookSelection.update(books[23])
-  // bookSelection.update(books[33])
-  // bookSelection.update(books[10])
 }

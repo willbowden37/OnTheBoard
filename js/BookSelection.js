@@ -5,9 +5,11 @@ class BookSelection {
      * @param bundledChart
      * @param barChart a reference to the bar chart to call its update function
      */
-    constructor(bundledChart, barChart) {
+    constructor(bundledChart, barChart, scatterplot, stackedChart) {
         this.bundledChart = bundledChart;
         this.barChart = barChart;
+        this.scatterplot = scatterplot;
+        this.stackedChart = stackedChart;
         this.listedBooks = [];
         this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
         this.divSelection = d3.select("#book-selection");
@@ -28,7 +30,8 @@ class BookSelection {
         //This receives a book element
         // console.log(book)
 
- 
+        let added = false;
+
         if (this.listedBooks.some(e => e.book_id === book.book_id)) {
             //list contains book already, remove it.
             const index = this.listedBooks.findIndex(e => e.book_id === book.book_id);
@@ -40,11 +43,13 @@ class BookSelection {
         else{
             //add book to list
             this.listedBooks.push(book)
+            added = true;
         }
 
         //possibly sort the list?
         
-        let list = this.divSelection.select('ul')
+        let list = this.divSelection.select('ul');
+        let update = this.update.bind(this);
         
         list.selectAll('li').remove()
 
@@ -61,14 +66,17 @@ class BookSelection {
         .on('mouseout', d => {
 
         })
-        .on('click', d => {
-            //Possibly call an update to bundledChart here
+        .on('click', function(d) {
+            update(d);
         })
         ;
 
 
-        // Updates book list in bar chart
+        // Updates charts
         this.barChart.update(this.listedBooks);
+        this.bundledChart.update(book, added);
+        this.scatterplot.update(this.listedBooks);
+        this.stackedChart.update(this.listedBooks);
 
     }
 }

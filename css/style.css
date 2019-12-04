@@ -213,6 +213,6 @@ li {
 }
 
 .selectedHover {
-  stroke: rgb(255, 251, 0);
-  z-index: 1000;
+  stroke: red;
+  stroke-width: 4;
 }

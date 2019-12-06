@@ -33,6 +33,36 @@
     Joseph Turcotte, joe.turcotte96@gmail.com, A# A01998206
   </p>
 
+  <button id="eli5Btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eli5Modal">
+    What am I looking at?
+  </button>
+
+  <div class="modal fade" id="eli5Modal" tabindex="-1" role="dialog" aria-labelledby="eli5ModalTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Visualization Information</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              What you are seeing is a partial visualization of a much larger dataset.  The ticks along the outside of the circle represent a book.<br/><br/>
+              Each line represents a connection between two books.  A connection exists if a reviewer made a review for both books.<br/><br/>
+              Along the bottom are three different charts.  The stacked chart shows a comparison of the amount of 1-5 star reviews a book received.<br/><br/>
+              The bar chart shows the average stars a book received, compared to other selected books.<br/><br/>
+              The scatterplot shows how many reviews a book got with what its average rating is.<br/><br/>
+              Hovering over any of the chart's books will highlight where that book is in the chart.<br/><br/>
+              A book may appear in multiple places due to the fact that books can have multiple genres.<br/><br/>
+              You may search for books on the right.  Results will show up underneath.  Clicking a book will add it to the selected books.<br/><br/>
+              Clicking the same book in either the search results, or the selected books, will remove it from the selected books.<br/><br/>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <div class="container" id="bootstrap-container">
     <div class="row">
       <div class="col-md-9">

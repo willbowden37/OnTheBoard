@@ -35,59 +35,62 @@
 
   <div class="container" id="bootstrap-container">
     <div class="row">
-      <div class="col-md-12">
-        <div id="book-selection" class="view">
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-md-9">
         <div id="bundled-chart" class="view">
         </div>
       </div>
-
       <div class="col-md-3">
-        <div id="search" class="view">
-          <div class="container" id="searchBarContainer">
-            <div class="row" id="searchBarRow">
-              <div class="col-md-10 searchRowItem">
-                <input class="searchInput" type="text" name="search" placeholder="Search" autocomplete="off"/>
-              </div>
-              <div class="col-md-2 searchRowItem">
-                <div class="searchButton">
-                  <img class="searchImg" src="images/magnifying-glass-3x.png" />
+        <div class="row" id="searchRow">
+          <div id="search" class="view searchView">
+            <div class="col-md-12" id="searchBarContainer">
+              <div class="row" id="searchBarRow">
+                <div class="col-md-10 searchRowItem">
+                  <input class="searchInput" type="text" name="search" placeholder="Search" autocomplete="off" />
+                </div>
+                <div class="col-md-2 searchRowItem">
+                  <div class="searchButton">
+                    <img class="searchImg" src="images/magnifying-glass-3x.png" />
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="searchResults">
+              <ul class="searchResultsList">
+              </ul>
+            </div>
           </div>
-          <div class="searchResults">
-            <ul class="searchResultsList">
-            </ul>
+        </div>
+        <div class="row">
+          <div class="col-md-12" id="searchChosen">
+            <div id="book-selection" class="view">
+              <h4>Selected Books</h4>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" id="seondaryChart">
         <div id="stacked-chart" class="view">
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" id="seondaryChart">
         <div id="bar-chart" class="view">
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" id="seondaryChart">
         <div id="scatterplot" class="view">
         </div>
       </div>
     </div>
   </div>
   <div style="margin-top: 15px; margin-left: 17px;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/7pSV6-F-oiM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/7pSV6-F-oiM" frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
   <script type="text/javascript" src="js/BookSelection.js"></script>
   <script type="text/javascript" src="js/BundledChart.js"></script>
   <script type="text/javascript" src="js/StackedChart.js"></script>

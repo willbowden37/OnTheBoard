@@ -30,6 +30,12 @@ class BundledChart {
         this.booklistHover = [];
         this.clonedNodesHover = [];
 
+        this.svg.append('text')
+            .attr('class', 'barChartTitle')
+            .attr('dx',50)
+            .attr('dy', 20)
+            .text('Edge Bundling Chart')
+        ;
 
     }
   

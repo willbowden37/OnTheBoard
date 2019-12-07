@@ -1,3 +1,11 @@
+/** 
+ * Barchart
+ * Authors: Will Bowden
+ * Data Visualization Final Project USU Fall 2019
+ * 
+ * 
+ * This class controls the functionality of the barchart. 
+*/
 class Barchart {
     /**
      * Constructor

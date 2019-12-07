@@ -1,3 +1,8 @@
+/** 
+ * tooltip
+ * Authors: Will Bowden, Joseph Turcotte
+ * Data Visualization Final Project USU Fall 2019
+*/
 class Tooltip {
 
     constructor(bundledChart) {

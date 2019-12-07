@@ -1,4 +1,11 @@
-
+/** 
+ * main script
+ * Authors: Will Bowden, Joseph Turcotte, Jason Andersen
+ * Data Visualization Final Project USU Fall 2019
+ * 
+ * this is the main script called from index.html, it reads in the csv files
+ * and instantiates the necessary classes and calls their init functions.
+*/
 let bundledChart = new BundledChart();
 
 let tooltip = new Tooltip(bundledChart);
@@ -11,21 +18,14 @@ let bookSelection = new BookSelection(bundledChart, barChart, scatterplot, stack
 
 let search = new SearchBox(bundledChart, bookSelection);
 
-// Load the data corresponding to all the election years.
-// Pass this data and instances of all the charts that update on year
-// selection to yearChart's constructor.
-
-
+//Load the csv files cooresponding to the books
 Promise.all([
   d3.csv("data/book_tags.csv"),
   d3.csv("data/books.csv"),
   d3.csv("data/tags.csv"),
   d3.json("data/bestRatingsYet.json"),
   d3.json("data/genres.json")
-  // d3.csv("data/to_read.csv"),
 ]).then(function (files) {
-  // files[0] will contain file1.csv
-  // files[1] will contain file2.csv
   let bookTags = files[0];
   let books = files[1];
   let tags = files[2];
@@ -34,12 +34,11 @@ Promise.all([
 
   //Data preprocessing
   parseTags(bookTags, books, tags, genres, ratings);
-
-  //Call update to
-
 })
 
 function parseTags(bookTags, books, tags, genres,ratings) {
+  //search through all of the books in the books.csv and find all of them
+  // with tags that coorespond to our selected genres.
   for (let i = 0; i < bookTags.length; i++) {
     let tag = bookTags[i];
     let id = parseInt(tag.goodreads_book_id);
@@ -85,8 +84,7 @@ function parseTags(bookTags, books, tags, genres,ratings) {
 
 
 
-
-  bookSelection.initializeList(taggedBooks)
+  //call necessary init functions for the different classes. 
   search.initialize(bookTags, taggedBooks, tags, genres)
   bundledChart.initialize(ratings)
 }

@@ -1,3 +1,11 @@
+/** 
+ * StackedChart
+ * Authors: Joseph Turcotte
+ * Data Visualization Final Project USU Fall 2019
+ * 
+ * 
+ * This class controls the functionality of the stacked bar chart. 
+*/
 class StackedChart {
     /**
      * Constructor
@@ -27,6 +35,38 @@ class StackedChart {
             .attr('dy', 20)
             .text('Stacked Chart')
             ;
+
+        //Create the legend for the stacked bar chart
+        let legend = [
+                "1 Star",
+                "2 Star",
+                "3 Star",
+                "4 Star",
+                "5 Star"
+        ]
+        this.svg.selectAll('rect')
+            .data(legend)
+            .enter()
+            .append('rect')
+            .attr('class', 'stackedBarChartLegendRect')
+            .attr('fill', (d, i) => this.colors[i])
+            .attr("y", 25)
+            .attr('height', 25)
+            .attr("x", (d, i) => i*60 +2)
+            .attr("width", d => 60)
+        ;
+
+        this.svg.selectAll('text .barChartLegend')
+            .data(legend)
+            .enter()
+            .append('text')
+            .attr('class', 'barChartLegend')
+            .attr('dx', (d,i) => i*60 +15)
+            .attr('dy',40)
+            .text(d => d)
+        ;
+
+
         this.overG;
     }
 
@@ -158,7 +198,7 @@ class StackedChart {
                 console.log(d)
                 return d
             })
-            .style('font-size', 10)
+            .style('font-size', 8)
         ;
 
     }

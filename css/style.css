@@ -61,14 +61,6 @@ h3{
   overflow-y: scroll;
 }
 
-#bar-chart {
-
-}
-
-#scatterplot {
-
-}
-
 .view {
     border: black solid 2px;
 }
@@ -120,10 +112,6 @@ li {
 
 .searchButton:hover {
   cursor: pointer;
-}
-
-.searchButtonText {
-
 }
 
 .searchImg {
@@ -196,6 +184,15 @@ li {
     text-align: center;
 }
 
+.barChartLegend {
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+.stackedBarChartLegendRect {
+  stroke: white;
+  stroke-width: 0.5;
+}
 /* ========== Styling for Scatterplot ========== */
 .scatterplotTitle {
     font-size: 16px;
@@ -219,14 +216,6 @@ li {
     fill: none;
     pointer-events: none;
     z-index: 0;
-}
-
-.node {
-
-}
-
-.book {
-  
 }
 
 .selected {

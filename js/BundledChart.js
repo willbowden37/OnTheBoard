@@ -1,4 +1,15 @@
+/** 
+ * BundledChart
+ * Authors: Will Bowden, Joseph Turcotte, Jason Andersen
+ * Data Visualization Final Project USU Fall 2019
+ * 
+ * 
+ * this is where the functionality and display settings for the main Heirarchical Bundled Chart are.
+*/
 class BundledChart {
+    /** 
+     * Constructor
+    */
     constructor() {
         this.margin = { top: 20, right: 20, bottom: 30, left: 30 };
         let divScatterplot = d3.select("#bundled-chart");
@@ -21,71 +32,10 @@ class BundledChart {
 
 
     }
-    parseData(taggedBooks, genres, ratings) {
-        console.log(taggedBooks);
-        console.log(genres);
-        console.log(ratings);
-        let myData = [];
-        myData.push({
-            id: "Genres",
-            parentId: null
-        })
-
-        genres.forEach(currentGenre => {
-            // console.log(currentGenre)
-            myData.push({
-                id: currentGenre.name,
-                parentId: 'Genres'
-            })
-
-            // let myBooks = taggedBooks.filter(book => book.tags.includes(currentGenre.id))
-            // console.log('Genre: ' + currentGenre.name + ' books: ', myBooks)
-        });
-
-
-
-        // var genreIds = $.map(genres, function(value, key) { return value });
-        // console.log(genreIds)
-        taggedBooks.forEach(book => {
-
-            let myConnections = [];
-            // ratings.forEach(rating => {
-            //     if(rating.book_id === book.book_id){
-            //         let userID = rating.user_id;
-            //         let booksToConnect = ratings.filter(e => e.user_id === userID && e.book_id !== book.book_id)
-            //         myConnections = myConnections.concat(booksToConnect)
-            //     }
-            // })
-
-            let myParentIds = []
-            genres.forEach(currentGenre => {
-                if (book.tags.includes(currentGenre.id)) {
-                    myParentIds.push(currentGenre.name)
-                }
-            })
-
-
-            //Assign unique ID for each book
-
-            let i = 10
-            myParentIds.forEach(parentId => {
-                let uniqueBookId = book.book_id.concat('-' + i.toString(36))
-                myData.push({
-                    id: uniqueBookId,
-                    parentId: parentId,
-                    data: book,
-                    connections: myConnections
-                })
-                i++
-            })
-        })
-
-        console.log(myData)
-        return myData
-    }
+  
     // Return a list of connection reviews for the given array of nodes.
     connectingReviews(nodes) {
-        // console.log(nodes)
+        // //console.log(nodes)
         var map = {},
             links = [];
         var linked = {};
@@ -96,11 +46,11 @@ class BundledChart {
             map[d.id] = d;
         });
 
-        console.log('started')
+        //console.log('started')
         // For each import, construct a link from the source to target node.
         nodes.forEach(d => {
             linked[d.id] = true;
-            // console.log(d)
+            // //console.log(d)
             if (d.data.connections) {
                 for (let i = 0; i < d.data.connections.length && i < maxIndividualLinks; i++) {
                     let conn = d.data.connections[i];
@@ -109,14 +59,15 @@ class BundledChart {
                 }
             }
         });
-        console.log('done')
-        // console.log(map)
-        console.log("Length of links is " + links.length)
+        //console.log('done')
+        // //console.log(map)
+        //console.log("Length of links is " + links.length)
         return links;
     }
 
     initialize(ratings) {
 
+        //determine the size of the chart
         let diameter = this.svgHeight * 1.3,
             radius = diameter / 2,
             innerRadius = radius - 120;
@@ -137,7 +88,7 @@ class BundledChart {
         this.allNode = group.append("g").selectAll(".node");
         let text = group.append("g").selectAll(".parentText");
 
-        // console.log('hi')
+        // //console.log('hi')
 
         // Create a root for the tree using d3.stratify(); 
         let root = d3.stratify()
@@ -145,30 +96,29 @@ class BundledChart {
             .parentId(d => d.parentId)
             (ratings)
             ;
-        // console.log(root)
+        // //console.log(root)
         cluster(root)
 
-        console.log("root and leaves");
-        console.log(root);
-        console.log(root.leaves());
-        console.log(root.descendants());
-        let myGenres = root.descendants().slice(1, 11);
-        console.log(myGenres);
+        //console.log("root and leaves");
+        //console.log(root);
+        //console.log(root.leaves());
+        //console.log(root.descendants());
+
+//Display all of the connecting links
         let myLinks = this.connectingReviews(root.leaves())
-        console.log(myLinks)
         this.link = this.link
             .data(myLinks)
             .enter().append("path")
             .each(function (d) {
-                //console.log(d)
+                ////console.log(d)
                 d.source = d[0], d.target = d[d.length - 1];
             })
             .attr("class", "link")
             .attr("d", line)
             .attr("id", d => d[0].id + "-" + d[d.length - 1].id)
             ;
-        console.log("Done with links");
-
+        //console.log("Done with links");
+//Display all of the nodes representing books
         let barWidth = 10
         let barHeight = .1
         this.allNode = this.allNode
@@ -183,7 +133,9 @@ class BundledChart {
             // 
             // .text(function(d) { return d.id; })
             ;
+//Display the text to identify genres
 
+        let myGenres = root.descendants().slice(1, 11);
         text = text.data(myGenres)
             .enter()
             .append('text')
@@ -241,7 +193,7 @@ class BundledChart {
     updateHover(book, added) {
         //for (let i = 0; i < this.node)
         if (added) {
-            console.log(this.allNode);
+            //console.log(this.allNode);
             for (let node of this.allNode._groups[0]) {
                 if (book.book_id === node.id) {
                     node.classList.add("selectedHover");

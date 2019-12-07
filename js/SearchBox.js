@@ -1,3 +1,11 @@
+/** 
+ * SearchBox
+ * Authors: Will Bowden, Joseph Turcotte, Jason Andersen
+ * Data Visualization Final Project USU Fall 2019
+ * 
+ * 
+ * This is the class that controls the functionality of the search box. 
+*/
 class SearchBox {
     /**
      * Constructor

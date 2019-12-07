@@ -1,3 +1,10 @@
+/** 
+ * BookSelection
+ * Authors: Will Bowden, Joseph Turcotte, Jason Andersen
+ * Data Visualization Final Project USU Fall 2019
+ * 
+ * This class is used to display the list of selected books. 
+*/
 class BookSelection {
     /**
      * Constructor
@@ -16,15 +23,6 @@ class BookSelection {
         this.divSelection.append('ul').attr('class', 'listSelection');
 
     }
-
-    initializeList(books) {
-        //Currently not using this list of books, might not need it at all
-        // this.books = books
-        // console.log(books)
-
-        //possibly add headers to the list, include more information, option to sort the list?
-    }
-
 
     update(book) {
         //This receives a book element

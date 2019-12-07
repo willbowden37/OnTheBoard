@@ -142,6 +142,24 @@ class StackedChart {
             .attr("y2", 25)
             .style("stroke", "black")
             ;
+        console.log(myData)
+        subG.selectAll('text')
+            .data(function (d) { return [d.original_title] })
+            .enter()
+            .append('text')
+            .attr('y', 17)
+            // .attr('transform', function () {
+            //     index++;
+            //     let dx = xPos[index - 2];
+            //     let dy = localSvgHeight - 15;
+            //     return 'translate(' + dx + ',' + dy + ') rotate(-65)';
+            // })
+            .text(d => {
+                console.log(d)
+                return d
+            })
+            .style('font-size', 10)
+        ;
 
     }
 }

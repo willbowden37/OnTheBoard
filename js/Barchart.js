@@ -59,9 +59,10 @@ class Barchart {
             .attr('class', 'bar-container')
         ;
 
-        let barWidth = this.svgWidth / (bookList.length*2);
+        let barWidth = (this.svgWidth - 25) / (bookList.length*2);
         let xPos = [bookList.length];
-        xPos[0] = barWidth/2;
+        xPos[0] = barWidth/2 + 25;
+        console.log(barWidth + ", " + xPos[0]);
         let index = 1;
         let tooltip = this.tooltip;
 

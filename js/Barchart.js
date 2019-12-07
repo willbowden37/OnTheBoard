@@ -59,9 +59,9 @@ class Barchart {
             .attr('class', 'bar-container')
         ;
 
-        let barWidth = (this.svgWidth - 25) / (bookList.length*2);
+        let barWidth = (this.svgWidth - 45) / (bookList.length*2);
         let xPos = [bookList.length];
-        xPos[0] = barWidth/2 + 25;
+        xPos[0] = barWidth/2 + 45;
         console.log(barWidth + ", " + xPos[0]);
         let index = 1;
         let tooltip = this.tooltip;
@@ -107,5 +107,27 @@ class Barchart {
             .attr("dy", "1em")
             .style("text-anchor", "middle")
             .text("Average Rating");
+
+        let localSvgHeight = this.svgHeight;
+        index = 1;
+        group.selectAll('text')
+            .data(bookList)
+            .enter()
+            .append('text')
+            .attr('transform', function () {
+                index++;
+                let dx = xPos[index - 2];
+                let dy = localSvgHeight - 15;
+                return 'translate(' + dx + ',' + dy + ') rotate(-65)';
+            })
+            .text(d => d.original_title)
+            .style('font-size', 10)
+        ;
+
+        this.svg.append('text')
+            .attr('y', this.svgHeight - 5)
+            .attr('x', this.svgWidth/2)
+            .text('Book Title')
+        ;
     }
 }

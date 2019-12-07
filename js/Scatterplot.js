@@ -41,7 +41,7 @@ class Scatterplot {
         this.colorScale = d3.scaleQuantile()
             .domain(this.domain)
             .range(colorRange);
-        this.bandSize = this.svgWidth;
+        this.bandSize = this.svgWidth- 40;
     }
 
     update(books) {
@@ -54,8 +54,17 @@ class Scatterplot {
         ;
         let yAxisD3 = d3.axisLeft(yAxisScale);
         let yAxis = this.svg.append('g');
-        yAxis.attr('transform', `translate(${25}, ${47.5})`)
+        yAxis.attr('transform', `translate(${45}, ${47.5})`)
             .call(yAxisD3);
+
+        this.svg.append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('y', 0)
+            .attr('x',0 - (this.svgHeight / 2))
+            .attr('dy', '1em')
+            .style('text-anchor', 'middle')
+            .text('Average Rating')
+        ;
 
         books = books.sort(function (a, b) {
             return a.ratings_count - b.ratings_count;
@@ -67,8 +76,14 @@ class Scatterplot {
         ;
         let xAxisD3 = d3.axisBottom(xAxisScale);
         let xAxis = this.svg.append('g');
-        xAxis.attr('transform', `translate(${30}, ${147.5})`)
+        xAxis.attr('transform', `translate(${50}, ${147.5})`)
             .call(xAxisD3);
+
+        this.svg.append('text')
+            .attr('y', this.svgHeight - 5)
+            .attr('x', this.svgWidth/2)
+            .text('Total Reviews')
+        ;
 
         let chartGroup = this.svg.append('g');
 
@@ -76,7 +91,7 @@ class Scatterplot {
             .data(books)
             .enter()
             .append('circle')
-            .attr('cx', d => 30 + (this.bandSize/books.length)/2 + xAxisScale(d.ratings_count))
+            .attr('cx', d => 50 + (this.bandSize/books.length)/2 + xAxisScale(d.ratings_count))
             .attr('cy', d => 55 + yAxisScale(d.average_rating))
             .style('fill', d => this.colorScale(d.average_rating))
             .attr('r', 5)

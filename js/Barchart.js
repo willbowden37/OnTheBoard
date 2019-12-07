@@ -100,13 +100,14 @@ class Barchart {
         yAxis.attr('transform', `translate(${45}, ${47.5})`)
             .call(yAxisD3);
 
-        this.svg.append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 0)
-            .attr("x",0 - (this.svgHeight / 2))
-            .attr("dy", "1em")
-            .style("text-anchor", "middle")
-            .text("Average Rating");
+        this.svg.append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('y', 0)
+            .attr('x',0 - (this.svgHeight / 2))
+            .attr('dy', '1em')
+            .style('text-anchor', 'middle')
+            .text('Average Rating')
+        ;
 
         let localSvgHeight = this.svgHeight;
         index = 1;
